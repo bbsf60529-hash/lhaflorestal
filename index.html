@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BBS Florestal · LHA – Venda de Cavaco e Biomassa</title>
+  <style>
+    :root {
+      --verde1:  #2d6a2d;
+      --verde2:  #4a9e3f;
+      --verde3:  #7dc95e;
+      --verde4:  #b8e08a;
+      --marrom1: #5c3010;
+      --marrom2: #7a4520;
+      --marrom3: #a0622a;
+      --bg-claro:#f0f4ec;
+      --dark:    #1a2e1a;
+      --branco:  #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #222; overflow-x: hidden; }
+
+    /* ══ NAVBAR ══ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 50px; height: 72px;
+      background: rgba(26,46,26,.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 3px solid var(--verde2);
+      transition: background .3s;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .logo-badge {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--verde2), var(--marrom2));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; font-weight: 900; color: #fff;
+      letter-spacing: -1px; border: 2px solid rgba(255,255,255,.2);
+    }
+    .logo-text { line-height: 1.1; }
+    .logo-text .t1 { font-size: 20px; font-weight: 900; color: #fff; letter-spacing: 1px; }
+    .logo-text .t1 span { color: var(--verde3); }
+    .logo-text .t2 { font-size: 10px; color: rgba(255,255,255,.55); font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; }
+    nav ul { display: flex; gap: 22px; list-style: none; }
+    nav ul a { color: rgba(255,255,255,.75); text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; transition: color .2s; }
+    nav ul a:hover { color: var(--verde3); }
+    .nav-cta { background: var(--verde2) !important; color: #fff !important; padding: 9px 22px; border-radius: 50px; transition: background .2s, transform .2s !important; }
+    .nav-cta:hover { background: var(--verde1) !important; transform: scale(1.04); }
+
+    /* ══ PERFIL CIS ══ */
+    #perfil { background: #fff; }
+    .perfil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .cis-table { width: 100%; border-collapse: collapse; font-size: 13.5pt; }
+    .cis-table tr { border-bottom: 1px solid #e8e8e8; }
+    .cis-table tr:last-child { border-bottom: none; }
+    .cis-table td { padding: 10px 12px; vertical-align: top; line-height: 1.5; }
+    .cis-table td:first-child { font-weight: 700; color: var(--verde1); width: 42%; font-size: 12px; text-transform: uppercase; letter-spacing: .3px; }
+    .cis-table td:last-child { color: #333; }
+    .cis-box { background: var(--bg-claro); border-radius: 18px; padding: 28px; border: 1px solid #dde8d5; }
+    .cis-box h3 { font-size: 15px; font-weight: 800; color: var(--verde1); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid var(--verde2); }
+    .cis-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--verde1), var(--verde2));
+      color: #fff; font-size: 12px; font-weight: 700;
+      padding: 6px 16px; border-radius: 50px; margin-bottom: 20px;
+      letter-spacing: .5px;
+    }
+
+    /* ══ NETZERO PALLET ══ */
+    #netzero { background: linear-gradient(135deg, #0a1a0a, #1a3a1a); }
+    .nz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .nz-badge-box {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 24px; padding: 36px; text-align: center;
+    }
+    .nz-icon { font-size: 80px; display: block; margin-bottom: 20px; }
+    .nz-badge-box h2 { font-size: 28px; font-weight: 900; color: #fff; margin-bottom: 8px; }
+    .nz-badge-box h2 span { color: var(--verde3); }
+    .nz-badge-box p { font-size: 14px; color: rgba(255,255,255,.65); line-height: 1.7; margin-bottom: 20px; }
+    .nz-certifs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
+    .nz-cert {
+      background: rgba(184,224,138,.15); border: 1px solid rgba(184,224,138,.3);
+      color: var(--verde4); font-size: 11px; font-weight: 700;
+      padding: 5px 12px; border-radius: 50px; letter-spacing: .5px;
+    }
+    .nz-specs { display: flex; flex-direction: column; gap: 0; }
+    .nz-spec-row {
+      display: flex; align-items: center; gap: 16px; padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nz-spec-row:last-child { border-bottom: none; }
+    .nz-spec-ic { font-size: 28px; width: 44px; text-align: center; flex-shrink: 0; }
+    .nz-spec-row h4 { font-size: 13px; font-weight: 700; color: var(--verde3); margin-bottom: 3px; text-transform: uppercase; letter-spacing: .5px; }
+    .nz-spec-row p  { font-size: 14px; color: rgba(255,255,255,.8); }
+    .nz-excl {
+      margin-top: 32px; background: rgba(74,158,63,.2);
+      border: 2px solid var(--verde2); border-radius: 14px; padding: 18px 22px;
+      text-align: center;
+    }
+    .nz-excl p { color: #fff; font-size: 15px; font-weight: 700; }
+    .nz-excl span { color: var(--verde3); }
+
+    /* ══ EQUIPE ══ */
+    #equipe { background: var(--bg-claro); }
+    .eq-header { text-align: center; margin-bottom: 50px; }
+    .eq-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+    .eq-card {
+      background: #fff; border-radius: 22px; padding: 32px 26px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.08);
+      border: 1px solid #eee; text-align: center;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .eq-card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(0,0,0,.13); }
+    .eq-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; margin: 0 auto 18px;
+      border: 3px solid var(--verde2);
+    }
+    .av-a { background: linear-gradient(135deg, var(--verde1), var(--verde2)); }
+    .av-b { background: linear-gradient(135deg, #1a3a6a, #2e6ab0); }
+    .av-c { background: linear-gradient(135deg, #6a3a1a, #b05a2e); }
+    .eq-card .nome { font-size: 17px; font-weight: 800; color: var(--dark); margin-bottom: 4px; }
+    .eq-card .cargo {
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+      color: var(--verde2); margin-bottom: 6px;
+    }
+    .eq-card .territorio {
+      display: inline-block; background: var(--bg-claro);
+      border: 1px solid rgba(74,158,63,.25); color: var(--verde1);
+      font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 50px;
+      margin-bottom: 20px;
+    }
+    .eq-contatos { display: flex; flex-direction: column; gap: 8px; }
+    .eq-ct { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #555; }
+    .eq-ct .ic { font-size: 16px; }
+
+    /* ══ HERO ══ */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #0d1f0d 0%, #1e3a12 45%, #2a4a1a 100%);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; position: relative; overflow: hidden;
+      padding-top: 72px;
+    }
+    .hero-leaves {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+    }
+    .leaf {
+      position: absolute;
+      width: 0; height: 0;
+      border-left: 60px solid transparent;
+      border-right: 60px solid transparent;
+      border-bottom: 120px solid rgba(77,158,63,.07);
+      border-radius: 50%;
+      animation: floatLeaf linear infinite;
+    }
+    @keyframes floatLeaf {
+      0%   { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: .6; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+    .hero-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(74,158,63,.15), transparent 70%);
+    }
+    .hero-circle.c1 { width: 700px; height: 700px; top: -200px; right: -200px; }
+    .hero-circle.c2 { width: 500px; height: 500px; bottom: -150px; left: -150px; }
+    .hero-content { position: relative; z-index: 2; padding: 0 20px; max-width: 860px; }
+    .hero-logo-big {
+      width: 110px; height: 110px;
+      background: linear-gradient(135deg, var(--verde2), var(--marrom2));
+      border-radius: 28px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 50px; font-weight: 900; color: #fff;
+      margin: 0 auto 28px;
+      box-shadow: 0 20px 60px rgba(74,158,63,.4);
+      border: 3px solid rgba(255,255,255,.15);
+      animation: fadeDown .8s ease both;
+    }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-30px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeUp   { from { opacity:0; transform:translateY(30px);  } to { opacity:1; transform:translateY(0); } }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(74,158,63,.18); border: 1px solid rgba(74,158,63,.4);
+      color: var(--verde4); font-size: 12px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 7px 20px; border-radius: 50px; margin-bottom: 22px;
+      animation: fadeDown .8s ease .1s both;
+    }
+    .hero-content h1 {
+      font-size: clamp(38px, 6.5vw, 82px);
+      font-weight: 900; color: #fff; line-height: 1.05; margin-bottom: 18px;
+      animation: fadeUp .9s ease .25s both;
+    }
+    .hero-content h1 .verde { color: var(--verde3); }
+    .hero-content h1 .marrom { color: #d4956a; }
+    .hero-sub {
+      font-size: clamp(15px, 2vw, 20px);
+      color: rgba(255,255,255,.72); line-height: 1.65;
+      max-width: 620px; margin: 0 auto 36px;
+      animation: fadeUp .9s ease .4s both;
+    }
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; animation: fadeUp .9s ease .55s both; }
+    .btn-p {
+      background: linear-gradient(135deg, var(--verde2), var(--verde1));
+      color: #fff; padding: 16px 36px; border-radius: 50px;
+      font-size: 15px; font-weight: 800; text-decoration: none;
+      box-shadow: 0 8px 30px rgba(74,158,63,.5);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-p:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(74,158,63,.6); }
+    .btn-s {
+      background: rgba(255,255,255,.08); color: #fff;
+      padding: 16px 36px; border-radius: 50px;
+      font-size: 15px; font-weight: 700; text-decoration: none;
+      border: 2px solid rgba(255,255,255,.22);
+      transition: background .2s, border-color .2s;
+    }
+    .btn-s:hover { background: rgba(255,255,255,.15); border-color: var(--verde3); }
+    .hero-stats {
+      display: flex; gap: 0; justify-content: center; flex-wrap: wrap;
+      margin-top: 56px;
+      animation: fadeUp .9s ease .7s both;
+    }
+    .h-stat {
+      text-align: center; padding: 0 36px;
+      border-right: 1px solid rgba(255,255,255,.12);
+    }
+    .h-stat:last-child { border-right: none; }
+    .h-stat .n { font-size: 40px; font-weight: 900; color: var(--verde3); line-height: 1; }
+    .h-stat .n sup { font-size: .55em; }
+    .h-stat .l { font-size: 11px; color: rgba(255,255,255,.55); text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; font-weight: 600; }
+    .scroll-ind {
+      position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,.3); font-size: 13px; letter-spacing: 2px;
+      text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 8px;
+      animation: bounce 2s infinite;
+    }
+    .scroll-ind span { font-size: 20px; }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+    /* ══ GENÉRICO ══ */
+    section { padding: 90px 40px; }
+    .container { max-width: 1160px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block;
+      background: rgba(74,158,63,.12); color: var(--verde1);
+      font-size: 11px; font-weight: 800; letter-spacing: 2.5px;
+      text-transform: uppercase; padding: 5px 14px; border-radius: 50px;
+      margin-bottom: 14px; border: 1px solid rgba(74,158,63,.25);
+    }
+    .dark-tag { background: rgba(184,224,138,.15) !important; color: var(--verde4) !important; border-color: rgba(184,224,138,.3) !important; }
+    .section-h { font-size: clamp(28px,4vw,46px); font-weight: 900; line-height: 1.15; margin-bottom: 14px; }
+    .section-p { font-size: 16px; color: #666; line-height: 1.75; }
+    .white { color: #fff !important; }
+    .white-sub { color: rgba(255,255,255,.65) !important; }
+
+    /* ══ PARCERIA BANNER ══ */
+    #parceria {
+      background: linear-gradient(90deg, #1e3a12, #2d6a2d, #1e3a12);
+      padding: 28px 40px; text-align: center;
+    }
+    #parceria p {
+      color: rgba(255,255,255,.9); font-size: 15px; font-weight: 600; letter-spacing: .5px;
+    }
+    #parceria span { color: var(--verde3); font-weight: 800; }
+
+    /* ══ HISTORIA ══ */
+    #historia { background: var(--bg-claro); }
+    .historia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .historia-img {
+      border-radius: 24px; overflow: hidden;
+      box-shadow: 0 24px 70px rgba(0,0,0,.13);
+      position: relative;
+    }
+    .hist-img-bg {
+      height: 460px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hist-img-bg img {
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: center 30%;
+    }
+    .hist-badge {
+      position: absolute; bottom: 24px; left: 24px;
+      background: #fff; border-radius: 16px; padding: 16px 22px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.15);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .hist-badge .icon { font-size: 32px; }
+    .hist-badge .big { font-size: 26px; font-weight: 900; color: var(--verde1); line-height: 1; }
+    .hist-badge .sm  { font-size: 11px; color: #888; font-weight: 600; }
+    .historia-texto .checks { margin-top: 30px; display: flex; flex-direction: column; gap: 16px; }
+    .check {
+      display: flex; gap: 16px; align-items: flex-start;
+      background: #fff; border-radius: 14px; padding: 18px;
+      box-shadow: 0 2px 14px rgba(0,0,0,.06); border-left: 4px solid var(--verde2);
+    }
+    .c-ico { font-size: 26px; flex-shrink: 0; }
+    .check h4 { font-size: 15px; font-weight: 800; margin-bottom: 4px; color: var(--dark); }
+    .check p  { font-size: 13px; color: #666; line-height: 1.5; }
+
+    /* ══ SERVIÇOS ══ */
+    #servicos { background: #fff; }
+    .serv-header { text-align: center; margin-bottom: 54px; }
+    .serv-header .section-p { max-width: 560px; margin: 0 auto; }
+    .serv-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+    .serv-card {
+      border-radius: 22px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,.08);
+      border: 1px solid #eee;
+      transition: transform .3s, box-shadow .3s;
+      background: #fff;
+    }
+    .serv-card:hover { transform: translateY(-8px); box-shadow: 0 20px 56px rgba(0,0,0,.14); }
+    .serv-top {
+      height: 180px; display: flex; align-items: center; justify-content: center; font-size: 72px;
+    }
+    .s1 { background: linear-gradient(135deg, #1e4d1e, #4a9e3f); }
+    .s2 { background: linear-gradient(135deg, #5c3010, #a0622a); }
+    .s3 { background: linear-gradient(135deg, #1a3a1a, #2d6a2d); }
+    .s4 { background: linear-gradient(135deg, #2c3e10, #6a8a30); }
+    .s5 { background: linear-gradient(135deg, #3d1a0a, #7a4520); }
+    .s6 { background: linear-gradient(135deg, #0d2a1e, #1e6b4a); }
+    .serv-body { padding: 24px; }
+    .serv-body h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: var(--dark); }
+    .serv-body p  { font-size: 14px; color: #666; line-height: 1.65; }
+
+    /* ══ VALORES ══ */
+    #valores { background: linear-gradient(135deg, var(--dark), #2a4a1a); }
+    .valores-header { text-align: center; margin-bottom: 54px; }
+    .valores-header .section-p { max-width: 560px; margin: 0 auto; }
+    .vals-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 20px; }
+    .val-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px; padding: 28px 18px;
+      text-align: center;
+      transition: background .3s, border-color .3s, transform .3s;
+    }
+    .val-card:hover { background: rgba(74,158,63,.2); border-color: var(--verde3); transform: translateY(-6px); }
+    .val-icon { font-size: 40px; margin-bottom: 14px; display: block; }
+    .val-card h3 { font-size: 14px; font-weight: 800; color: var(--verde3); letter-spacing: .5px; text-transform: uppercase; }
+
+    /* ══ NÚMEROS ══ */
+    #numeros {
+      background: linear-gradient(90deg, var(--verde1), var(--verde2), var(--verde1));
+      padding: 60px 40px;
+    }
+    .nums-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; }
+    .num-item { text-align: center; padding: 0 20px; border-right: 1px solid rgba(255,255,255,.2); }
+    .num-item:last-child { border-right: none; }
+    .num-item .n { font-size: clamp(44px,5vw,68px); font-weight: 900; color: #fff; line-height: 1; }
+    .num-item .n sup { font-size: .5em; }
+    .num-item p   { font-size: 13px; color: rgba(255,255,255,.8); margin-top: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
+
+    /* ══ OPERAÇÃO ══ */
+    #operacao { background: var(--bg-claro); }
+    .op-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .op-mapa {
+      background: #fff; border-radius: 20px;
+      padding: 32px; box-shadow: 0 8px 40px rgba(0,0,0,.1);
+    }
+    .op-mapa h3 { font-size: 16px; font-weight: 800; color: var(--verde1); margin-bottom: 20px; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
+    .estados-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .estado-item {
+      background: var(--bg-claro); border-radius: 12px; padding: 14px 12px;
+      text-align: center; border: 2px solid transparent;
+      transition: border-color .2s, background .2s;
+    }
+    .estado-item:hover { border-color: var(--verde2); background: #fff; }
+    .estado-item .bandeira { font-size: 26px; display: block; margin-bottom: 4px; }
+    .estado-item .nome { font-size: 12px; font-weight: 700; color: var(--dark); }
+    .estado-item .uf { font-size: 10px; color: #888; }
+    .cap-box {
+      margin-top: 24px; background: linear-gradient(135deg, var(--verde1), var(--verde2));
+      border-radius: 16px; padding: 20px 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .cap-box .icon { font-size: 36px; }
+    .cap-box .n { font-size: 32px; font-weight: 900; color: #fff; }
+    .cap-box .l { font-size: 13px; color: rgba(255,255,255,.85); font-weight: 600; }
+    .op-texto .section-p { margin-top: 16px; }
+    .op-features { margin-top: 30px; display: flex; flex-direction: column; gap: 14px; }
+    .op-feat {
+      display: flex; gap: 14px; align-items: center;
+      background: #fff; border-radius: 14px; padding: 16px 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .op-feat .ic { font-size: 28px; }
+    .op-feat h4 { font-size: 14px; font-weight: 800; color: var(--dark); margin-bottom: 2px; }
+    .op-feat p  { font-size: 13px; color: #777; }
+
+    /* ══ CLIENTES ══ */
+    #clientes { background: #fff; }
+    .cli-header { text-align: center; margin-bottom: 50px; }
+    .cli-header .section-p { max-width: 540px; margin: 10px auto 0; }
+    .cli-logos { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; align-items: center; }
+    .cli-card {
+      background: var(--bg-claro); border-radius: 18px; padding: 28px 40px;
+      border: 2px solid #e8e8e8; min-width: 180px; text-align: center;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .cli-card:hover { border-color: var(--verde2); box-shadow: 0 8px 30px rgba(74,158,63,.15); transform: translateY(-4px); }
+    .cli-card .cli-nome { font-size: 24px; font-weight: 900; color: var(--dark); }
+    .cli-card .cli-seg  { font-size: 11px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+    .cli-jbs   .cli-nome { color: #c0392b; }
+    .cli-klab  .cli-nome { color: #27ae60; }
+    .cli-suz   .cli-nome { color: #2e7d32; }
+    .cli-lha   .cli-nome { color: var(--verde1); }
+    .cli-trust {
+      margin-top: 40px; text-align: center;
+      background: linear-gradient(135deg, #f8fdf4, #edf7e6);
+      border-radius: 16px; padding: 24px; border: 1px solid #d4ecc8;
+    }
+    .cli-trust p { font-size: 15px; color: #555; font-weight: 600; }
+    .cli-trust span { color: var(--verde1); font-weight: 800; }
+
+    /* ══ PROCESSO ══ */
+    #processo { background: var(--bg-claro); }
+    .proc-header { text-align: center; margin-bottom: 56px; }
+    .proc-header .section-p { max-width: 540px; margin: 10px auto 0; }
+    .steps-row { display: grid; grid-template-columns: repeat(5,1fr); position: relative; }
+    .steps-row::before {
+      content:''; position:absolute; top:50px; left:10%; right:10%;
+      height:3px; background:linear-gradient(90deg, var(--verde2), var(--verde3));
+      z-index:0;
+    }
+    .step { text-align:center; position:relative; z-index:1; padding:0 8px; }
+    .s-num {
+      width:100px; height:100px;
+      background:linear-gradient(135deg, var(--verde2), var(--verde1));
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      font-size:36px; margin:0 auto 20px;
+      box-shadow:0 8px 28px rgba(74,158,63,.4);
+      border:4px solid #fff;
+    }
+    .step h4 { font-size:15px; font-weight:800; color:var(--dark); margin-bottom:6px; }
+    .step p   { font-size:13px; color:#777; line-height:1.5; }
+
+    /* ══ CONTATO ══ */
+    #contato { background: linear-gradient(135deg, var(--dark), #2a4a1a); }
+    .ct-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:60px; align-items:start; }
+    .ct-info h2 { font-size:clamp(28px,4vw,44px); font-weight:900; color:#fff; line-height:1.2; margin-bottom:16px; }
+    .ct-info h2 span { color:var(--verde3); }
+    .ct-info .section-p { color:rgba(255,255,255,.65); font-size:15px; margin-bottom:36px; }
+    .ct-items { display:flex; flex-direction:column; gap:18px; }
+    .ct-item { display:flex; align-items:center; gap:16px; }
+    .ct-ic {
+      width:50px; height:50px;
+      background:rgba(74,158,63,.18); border:1px solid rgba(74,158,63,.4);
+      border-radius:14px; display:flex; align-items:center; justify-content:center;
+      font-size:22px; flex-shrink:0;
+    }
+    .ct-item h4 { font-size:11px; color:rgba(255,255,255,.5); font-weight:700; text-transform:uppercase; letter-spacing:1px; }
+    .ct-item p  { font-size:15px; color:#fff; font-weight:700; }
+    .form-box {
+      background:#fff; border-radius:26px; padding:44px;
+      box-shadow:0 30px 80px rgba(0,0,0,.35);
+    }
+    .form-box h3 { font-size:22px; font-weight:900; margin-bottom:26px; color:var(--dark); }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .fg { margin-bottom:16px; }
+    .fg label { display:block; font-size:12px; font-weight:700; color:#555; margin-bottom:5px; text-transform:uppercase; letter-spacing:.5px; }
+    .fg input, .fg select, .fg textarea {
+      width:100%; padding:12px 15px; border:2px solid #eee;
+      border-radius:10px; font-size:14px; font-family:inherit;
+      color:#333; transition:border-color .2s; background:#fafafa;
+    }
+    .fg input:focus, .fg select:focus, .fg textarea:focus {
+      outline:none; border-color:var(--verde2); background:#fff;
+    }
+    .fg textarea { height:100px; resize:vertical; }
+    .btn-form {
+      width:100%; background:linear-gradient(135deg, var(--verde2), var(--verde1));
+      color:#fff; padding:16px; border:none; border-radius:50px;
+      font-size:16px; font-weight:800; cursor:pointer; letter-spacing:.5px;
+      box-shadow:0 8px 24px rgba(74,158,63,.4);
+      transition:transform .2s, box-shadow .2s;
+    }
+    .btn-form:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(74,158,63,.55); }
+
+    /* ══ FOOTER ══ */
+    footer { background:#060d06; padding:44px 40px; }
+    .foot-inner { max-width:1160px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px; align-items:start; }
+    .foot-brand .logo-badge { margin-bottom:12px; }
+    .foot-brand p { font-size:13px; color:rgba(255,255,255,.5); line-height:1.7; margin-top:10px; }
+    .foot-col h4 { font-size:13px; font-weight:800; color:#fff; text-transform:uppercase; letter-spacing:1px; margin-bottom:16px; }
+    .foot-col a, .foot-col p { font-size:13px; color:rgba(255,255,255,.5); text-decoration:none; display:block; margin-bottom:8px; transition:color .2s; line-height:1.6; }
+    .foot-col a:hover { color:var(--verde3); }
+    .foot-bottom { max-width:1160px; margin:28px auto 0; padding-top:20px; border-top:1px solid rgba(255,255,255,.08); display:flex; justify-content:space-between; align-items:center; }
+    .foot-bottom p { font-size:12px; color:rgba(255,255,255,.35); }
+    .foot-cnpj { font-size:12px; color:rgba(255,255,255,.35); }
+
+    /* ══ WHATSAPP ══ */
+    .wa-btn {
+      position:fixed; bottom:28px; right:28px; z-index:999;
+      width:62px; height:62px; background:#25d366; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:30px; text-decoration:none;
+      box-shadow:0 6px 24px rgba(37,211,102,.5);
+      animation:wpulse 2s infinite;
+    }
+    @keyframes wpulse { 0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.5)} 50%{box-shadow:0 6px 40px rgba(37,211,102,.8)} }
+
+    /* ══ RESPONSIVE ══ */
+    @media(max-width:960px) {
+      nav ul { display:none; }
+      nav { padding:0 20px; }
+      .historia-grid, .op-grid, .ct-grid { grid-template-columns:1fr; }
+      .serv-grid { grid-template-columns:repeat(2,1fr); }
+      .vals-grid { grid-template-columns:repeat(3,1fr); }
+      .nums-grid { grid-template-columns:repeat(2,1fr); gap:30px; }
+      .steps-row { grid-template-columns:1fr; }
+      .steps-row::before { display:none; }
+      .form-row { grid-template-columns:1fr; }
+      section { padding:60px 20px; }
+      .h-stat { padding:0 20px; }
+      .foot-inner { grid-template-columns:1fr; }
+      .foot-bottom { flex-direction:column; gap:8px; }
+    }
+    @media(max-width:580px) {
+      .serv-grid { grid-template-columns:1fr; }
+      .vals-grid { grid-template-columns:repeat(2,1fr); }
+      .cli-logos { flex-direction:column; align-items:center; }
+      .estados-grid { grid-template-columns:repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <div class="logo-badge" style="width:60px;font-size:13px;letter-spacing:0;font-weight:900;">LHA<br/><span style="font-size:9px;opacity:.85;letter-spacing:.5px;">BBS</span></div>
+    <div class="logo-text">
+      <div class="t1">LHA · <span>BBS</span></div>
+      <div class="t2">Florestal · Cavaco & Biomassa</div>
+    </div>
+  </a>
+  <ul>
+    <li><a href="#historia">Sobre</a></li>
+    <li><a href="#producao">Produção</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#logistica">Logística</a></li>
+    <li><a href="#equipe">Equipe</a></li>
+    <li><a href="#contato" class="nav-cta">Cotação</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-leaves" id="leaves"></div>
+  <div class="hero-circle c1"></div>
+  <div class="hero-circle c2"></div>
+  <div class="hero-content">
+    <div class="hero-logo-big" style="font-size:22px;letter-spacing:-1px;width:130px;border-radius:22px;">LHA<br/><span style="font-size:14px;font-weight:700;opacity:.85;letter-spacing:1px;">BBS</span></div>
+    <div class="hero-eyebrow">🌿 LHA Florestal & Biomassa · BBS Florestal</div>
+    <h1>
+      <span class="verde">Cavaco</span> e <span class="marrom">Biomassa</span><br/>
+      de Alta Performance
+    </h1>
+    <p class="hero-sub">
+      A BBS Florestal conecta indústrias que utilizam caldeiras às melhores fontes
+      de biomassa do Brasil — eucalipto de alta qualidade, processo sustentável e
+      entrega garantida em todo o território nacional.
+    </p>
+    <div class="hero-btns">
+      <a href="#contato" class="btn-p">🚀 Solicitar Cotação Agora</a>
+      <a href="#historia" class="btn-s">Conheça a Empresa</a>
+    </div>
+    <div class="hero-stats">
+      <div class="h-stat">
+        <div class="n">12<sup>mil</sup></div>
+        <div class="l">Toneladas / mês</div>
+      </div>
+      <div class="h-stat">
+        <div class="n">6</div>
+        <div class="l">Estados atendidos</div>
+      </div>
+      <div class="h-stat">
+        <div class="n">2016</div>
+        <div class="l">Fundada em</div>
+      </div>
+      <div class="h-stat">
+        <div class="n">100<sup>%</sup></div>
+        <div class="l">Origem legal</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-ind"><span>↓</span>saiba mais</div>
+</section>
+
+<!-- ══ BANNER PARCERIA ══ -->
+<div id="parceria">
+  <p>🌿 <span>LHA Florestal & Biomassa</span> — empresa de produção florestal, fundada em 2016 por André Luiz Pires Teixeira. &nbsp;🤝&nbsp; <strong>BBS Florestal</strong> — parceira comercial, responsável pela venda e entrega ao cliente final.</p>
+</div>
+
+<!-- ══ NOSSA HISTÓRIA ══ -->
+<section id="historia">
+  <div class="container">
+    <div class="historia-grid">
+      <div class="historia-img">
+        <div class="hist-img-bg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Sherbrooke_Eucalypts.jpg" alt="Floresta de Eucalipto"/>
+        </div>
+      </div>
+      <div class="historia-texto">
+        <div class="section-tag">Nossa História</div>
+        <h2 class="section-h">Biomassa de Eucalipto com Qualidade e Sustentabilidade</h2>
+        <p class="section-p">
+          A <strong>LHA Florestal & Biomassa</strong> — fundada em 2016 por André Luiz Pires Teixeira — é responsável por toda a produção: compra de florestas de eucalipto, corte, arraste e conversão em cavaco. A <strong>BBS Florestal</strong> é a parceira comercial, atuando na venda e relacionamento com o cliente final.
+        </p>
+        <p class="section-p" style="margin-top:12px;">
+          Nossa biomassa é originada de eucalipto de alta qualidade, fornecida para indústrias que utilizam caldeiras em seus processos produtivos, garantindo eficiência energética e sustentabilidade ambiental.
+        </p>
+        <div class="checks">
+          <div class="check">
+            <div class="c-ico">🌿</div>
+            <div>
+              <h4>Compra e Gestão de Florestas</h4>
+              <p>Aquisição de florestas de eucalipto para conversão eficiente em biomassa de alta qualidade.</p>
+            </div>
+          </div>
+          <div class="check">
+            <div class="c-ico">⚙️</div>
+            <div>
+              <h4>Processo Produtivo Completo</h4>
+              <p>Da aquisição da floresta até a entrega do cavaco: corte, arraste e picagem com tecnologia avançada.</p>
+            </div>
+          </div>
+          <div class="check">
+            <div class="c-ico">🚚</div>
+            <div>
+              <h4>Frota Própria de Entrega</h4>
+              <p>Veículos próprios para controle total das entregas, garantindo prazo e qualidade ao cliente.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALERIA LHA ══ -->
+<section id="galeria" style="background:#f7faf4;padding:60px 0;">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:36px;">
+      <div class="section-tag">Em Campo</div>
+      <h2 class="section-h">LHA Florestal & Biomassa — Operação Real</h2>
+      <p class="section-p" style="max-width:500px;margin:0 auto;">Maquinários de alta tecnologia, frota própria e mão de obra especializada em ação.</p>
+    </div>
+
+    <!-- foto destaque: maquinário panorâmico -->
+    <div style="border-radius:18px;overflow:hidden;height:340px;margin-bottom:16px;max-width:1100px;margin-left:auto;margin-right:auto;">
+      <img src="FOTOS%20ATIVIDADES/WhatsApp%20Image%202026-03-27%20at%2022.41.45%20(1).jpeg" alt="Maquinário LHA em operação" style="width:100%;height:100%;object-fit:cover;"/>
+    </div>
+
+    <!-- grade 3 colunas -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1100px;margin:0 auto;">
+      <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;">
+        <img src="FOTOS%20ATIVIDADES/WhatsApp%20Image%202026-03-27%20at%2021.28.19.jpeg" alt="Harvester colheita eucalipto" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
+      <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;">
+        <img src="FOTOS%20ATIVIDADES/WhatsApp%20Image%202026-03-27%20at%2021.28.20.jpeg" alt="Harvester toras eucalipto" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
+      <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;">
+        <img src="FOTOS%20ATIVIDADES/WhatsApp%20Image%202026-03-27%20at%2022.41.45%20(2).jpeg" alt="Pilha de cavaco sendo formada" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
+      <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;">
+        <img src="FOTOS%20ATIVIDADES/WhatsApp%20Image%202026-03-27%20at%2022.41.46%20(1).jpeg" alt="Biomassa de eucalipto" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
+      <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;">
+        <img src="FOTOS%20ATIVIDADES/WhatsApp%20Image%202026-03-27%20at%2022.41.46%20(2).jpeg" alt="Inspeção de qualidade do cavaco" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
+      <div style="border-radius:14px;overflow:hidden;aspect-ratio:4/3;">
+        <img src="FOTOS%20ATIVIDADES/WhatsApp%20Image%202026-03-27%20at%2022.41.46.jpeg" alt="Técnico inspecionando biomassa" style="width:100%;height:100%;object-fit:cover;"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVIÇOS ══ -->
+<section id="servicos">
+  <div class="container">
+    <div class="serv-header">
+      <div class="section-tag">Prestação de Serviço</div>
+      <h2 class="section-h">O que oferecemos</h2>
+      <p class="section-p">Solução completa em biomassa florestal — do campo até a caldeira da sua indústria.</p>
+    </div>
+    <div class="serv-grid">
+      <div class="serv-card">
+        <div class="serv-top s1">🌿</div>
+        <div class="serv-body">
+          <h3>Cavaco de Eucalipto</h3>
+          <p>Biomassa de eucalipto de alta qualidade com granulometria controlada. Ideal para caldeiras industriais, secadores e geração de energia. Alta densidade energética e baixo teor de cinzas.</p>
+        </div>
+      </div>
+      <div class="serv-card">
+        <div class="serv-top s2">🚛</div>
+        <div class="serv-body">
+          <h3>Frota Própria</h3>
+          <p>Entrega ágil e segura com frota rastreada. Controle total sobre os prazos e condições de transporte, preservando a qualidade do produto do carregamento até o destino final.</p>
+        </div>
+      </div>
+      <div class="serv-card">
+        <div class="serv-top s3">⚙️</div>
+        <div class="serv-body">
+          <h3>Maquinários de Alta Tecnologia</h3>
+          <p>Equipamentos modernos para produção com precisão e eficiência. Picadores de alto desempenho garantem cavaco uniforme e dentro das especificações técnicas exigidas pelo cliente.</p>
+        </div>
+      </div>
+      <div class="serv-card">
+        <div class="serv-top s4">👷</div>
+        <div class="serv-body">
+          <h3>Mão de Obra Especializada</h3>
+          <p>Equipe altamente qualificada com treinamento contínuo. Profissionais dedicados à excelência operacional, garantindo padrão de qualidade em todas as etapas da cadeia produtiva.</p>
+        </div>
+      </div>
+      <div class="serv-card">
+        <div class="serv-top s5">📋</div>
+        <div class="serv-body">
+          <h3>Contratos de Fornecimento</h3>
+          <p>Contratos customizados para fornecimento contínuo e garantido. Atendemos desde volumes menores até grandes contratos industriais com cadência definida e previsibilidade.</p>
+        </div>
+      </div>
+      <div class="serv-card">
+        <div class="serv-top s6">🌱</div>
+        <div class="serv-body">
+          <h3>Biomassa Sustentável</h3>
+          <p>100% de origem em florestas plantadas de eucalipto com documentação e rastreabilidade completa. Energia renovável que contribui para a redução da pegada de carbono da sua indústria.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ VALORES ══ -->
+<section id="valores">
+  <div class="container">
+    <div class="valores-header">
+      <div class="section-tag dark-tag">Nosso DNA</div>
+      <h2 class="section-h white">Nossos Valores</h2>
+      <p class="section-p white-sub">Princípios que guiam cada decisão e cada tonelada entregue.</p>
+    </div>
+    <div class="vals-grid">
+      <div class="val-card">
+        <span class="val-icon">🤝</span>
+        <h3>Confiabilidade</h3>
+      </div>
+      <div class="val-card">
+        <span class="val-icon">🏆</span>
+        <h3>Qualidade</h3>
+      </div>
+      <div class="val-card">
+        <span class="val-icon">⚡</span>
+        <h3>Eficiência</h3>
+      </div>
+      <div class="val-card">
+        <span class="val-icon">💡</span>
+        <h3>Inovação</h3>
+      </div>
+      <div class="val-card">
+        <span class="val-icon">🎯</span>
+        <h3>Excelência</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NÚMEROS ══ -->
+<section id="numeros">
+  <div class="container">
+    <div class="nums-grid">
+      <div class="num-item">
+        <div class="n">12<sup>mil</sup></div>
+        <p>Toneladas/mês de capacidade</p>
+      </div>
+      <div class="num-item">
+        <div class="n">6</div>
+        <p>Estados de operação</p>
+      </div>
+      <div class="num-item">
+        <div class="n">9<sup>+</sup></div>
+        <p>Anos no mercado</p>
+      </div>
+      <div class="num-item">
+        <div class="n">100<sup>%</sup></div>
+        <p>Documentação e rastreabilidade</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OPERAÇÃO ══ -->
+<section id="operacao">
+  <div class="container">
+    <div class="op-grid">
+      <div>
+        <div class="op-mapa">
+          <h3>🗺️ Áreas de Operação</h3>
+          <div class="estados-grid">
+            <div class="estado-item"><span class="bandeira">🌿</span><div class="nome">Tocantins</div><div class="uf">TO</div></div>
+            <div class="estado-item"><span class="bandeira">⛏️</span><div class="nome">Minas Gerais</div><div class="uf">MG</div></div>
+            <div class="estado-item"><span class="bandeira">🌊</span><div class="nome">Espírito Santo</div><div class="uf">ES</div></div>
+            <div class="estado-item"><span class="bandeira">🏙️</span><div class="nome">São Paulo</div><div class="uf">SP</div></div>
+            <div class="estado-item"><span class="bandeira">🌲</span><div class="nome">Paraná</div><div class="uf">PR</div></div>
+            <div class="estado-item"><span class="bandeira">🌾</span><div class="nome">Mato Grosso do Sul</div><div class="uf">MS</div></div>
+          </div>
+          <div class="cap-box">
+            <div class="icon">📦</div>
+            <div>
+              <div class="n">12.000 t</div>
+              <div class="l">Capacidade mensal de fornecimento</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="op-texto">
+        <div class="section-tag">Nossa Operação</div>
+        <h2 class="section-h">Presente nos Principais Polos Florestais do Brasil</h2>
+        <p class="section-p">A LHA Florestal Biomassa opera em localidades estratégicas — Tocantins, Minas Gerais, Espírito Santo, São Paulo, Paraná e Mato Grosso do Sul — garantindo disponibilidade constante de biomassa para nossos clientes em toda a região Centro-Sul e Sudeste do Brasil.</p>
+        <div class="op-features">
+          <div class="op-feat">
+            <div class="ic">🚚</div>
+            <div>
+              <h4>Logística Estratégica</h4>
+              <p>Bases operacionais próximas às principais indústrias consumidoras de biomassa.</p>
+            </div>
+          </div>
+          <div class="op-feat">
+            <div class="ic">📊</div>
+            <div>
+              <h4>Capacidade Garantida</h4>
+              <p>12.000 toneladas mensais com estoque estratégico para demandas urgentes.</p>
+            </div>
+          </div>
+          <div class="op-feat">
+            <div class="ic">🌱</div>
+            <div>
+              <h4>Florestas Plantadas</h4>
+              <p>100% de origem em florestas de eucalipto cultivadas com responsabilidade ambiental.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRODUÇÃO SILVEIRAS ══ -->
+<section id="producao" style="background:#fff;">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:50px;">
+      <div class="section-tag">Área de Produção</div>
+      <h2 class="section-h">Produção em Silveiras — SP</h2>
+      <p class="section-p" style="max-width:600px;margin:0 auto;">Operação florestal no município de Silveiras/SP, com produção de cavaco e toras de Saligno Vermelho para abastecimento estratégico da região metropolitana de São Paulo e Vale do Paraíba.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
+
+      <!-- Produtos -->
+      <div>
+        <div class="cis-box" style="margin-bottom:24px;">
+          <div class="cis-badge" style="margin-bottom:16px;">🌿 Cavaco de Eucalipto Saligno</div>
+          <p style="font-size:14px;color:#555;line-height:1.7;margin-bottom:14px;">
+            Cavaco produzido a partir de florestas de <strong>Eucalipto Saligno Vermelho</strong> (Eucalyptus saligna) — espécie de alta densidade, excelente poder calorífico e fibra resistente. Indicado para caldeiras industriais de alta demanda.
+          </p>
+          <table class="cis-table">
+            <tr><td>Espécie</td><td><strong>Eucalipto Saligno Vermelho</strong></td></tr>
+            <tr><td>Produto</td><td>Cavaco para energia / biomassa</td></tr>
+            <tr><td>Aplicação</td><td>Caldeiras industriais, secadores, energia</td></tr>
+            <tr><td>Origem</td><td>Florestas plantadas — Silveiras/SP</td></tr>
+            <tr><td>Rastreabilidade</td><td>DOF + documentação completa</td></tr>
+          </table>
+        </div>
+        <div class="cis-box">
+          <div class="cis-badge" style="margin-bottom:16px;">🪵 Toras de Saligno Vermelho</div>
+          <p style="font-size:14px;color:#555;line-height:1.7;margin-bottom:14px;">
+            Toras de eucalipto Saligno Vermelho para serraria e processamento industrial. Madeira de alta qualidade, densidade superior e durabilidade comprovada — ideal para estruturas, mourões e produtos sólidos de madeira.
+          </p>
+          <table class="cis-table">
+            <tr><td>Espécie</td><td><strong>Eucalipto Saligno Vermelho</strong></td></tr>
+            <tr><td>Produto</td><td>Toras para serraria / industrialização</td></tr>
+            <tr><td>Aplicação</td><td>Serraria, mourões, construção civil</td></tr>
+            <tr><td>Comprimento</td><td>Conforme especificação do cliente</td></tr>
+            <tr><td>Disponibilidade</td><td>Imediata — estoque em campo</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Localização + destaque -->
+      <div>
+        <div style="background:linear-gradient(135deg,#1a2e1a,#2d6a2d);border-radius:20px;padding:36px;color:#fff;margin-bottom:24px;">
+          <div style="font-size:48px;margin-bottom:16px;text-align:center;">📍</div>
+          <h3 style="font-size:20px;font-weight:900;text-align:center;margin-bottom:8px;color:var(--verde3);">Silveiras — SP</h3>
+          <p style="font-size:13px;color:rgba(255,255,255,.65);text-align:center;margin-bottom:20px;">Vale do Paraíba · Estado de São Paulo</p>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.06);border-radius:10px;padding:12px;">
+              <span style="font-size:22px;">🚛</span>
+              <div>
+                <div style="font-size:12px;font-weight:700;color:var(--verde3);text-transform:uppercase;letter-spacing:.5px;">A ~3h de São Paulo</div>
+                <div style="font-size:13px;color:rgba(255,255,255,.8);">Acesso pela Rodovia Presidente Dutra (BR-116)</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.06);border-radius:10px;padding:12px;">
+              <span style="font-size:22px;">🏭</span>
+              <div>
+                <div style="font-size:12px;font-weight:700;color:var(--verde3);text-transform:uppercase;letter-spacing:.5px;">Posição estratégica</div>
+                <div style="font-size:13px;color:rgba(255,255,255,.8);">Entre o ABC Paulista e São José dos Campos</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.06);border-radius:10px;padding:12px;">
+              <span style="font-size:22px;">🌿</span>
+              <div>
+                <div style="font-size:12px;font-weight:700;color:var(--verde3);text-transform:uppercase;letter-spacing:.5px;">7 propriedades</div>
+                <div style="font-size:13px;color:rgba(255,255,255,.8);">1.702 ha de florestas no Vale do Paraíba</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,var(--verde2),var(--verde1));border-radius:16px;padding:22px 26px;color:#fff;text-align:center;">
+          <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.8);margin-bottom:6px;">Volume Total Disponível</div>
+          <div style="font-size:42px;font-weight:900;line-height:1;margin-bottom:4px;">~649.700 t</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.75);">812.120 m³ de madeira em 7 propriedades</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PORTFOLIO VOLUMES ══ -->
+<section id="portfolio" style="background:linear-gradient(135deg,#0a1a0a,#1a3a1a);">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:50px;">
+      <div class="section-tag dark-tag">Portfolio Florestal</div>
+      <h2 class="section-h white">Volumes Disponíveis — 2026</h2>
+      <p class="section-p white-sub" style="max-width:600px;margin:0 auto;">Estimativa de volumes convertidos de m³ para toneladas (fator 0,8 t/m³ — eucalipto). Todas as propriedades localizadas no Estado de São Paulo, com logística para a Grande SP, ABC e Vale do Paraíba.</p>
+    </div>
+
+    <!-- Cards de volume por propriedade anônima -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:36px;">
+
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--verde3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Área 1 — 67 ha</div>
+        <div style="font-size:28px;font-weight:900;color:#fff;line-height:1;">~16.500 t</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:4px;">20.623 m³ · 21 anos</div>
+        <div style="margin-top:10px;display:inline-block;background:rgba(74,158,63,.25);color:var(--verde3);font-size:10px;font-weight:700;padding:3px 10px;border-radius:50px;">✅ Pronto p/ colheita</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--verde3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Área 2 — 104 ha</div>
+        <div style="font-size:28px;font-weight:900;color:#fff;line-height:1;">~42.000 t</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:4px;">52.528 m³ · 18 anos</div>
+        <div style="margin-top:10px;display:inline-block;background:rgba(74,158,63,.25);color:var(--verde3);font-size:10px;font-weight:700;padding:3px 10px;border-radius:50px;">✅ Pronto p/ colheita</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--verde3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Área 3 — 290 ha</div>
+        <div style="font-size:28px;font-weight:900;color:#fff;line-height:1;">~104.000 t</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:4px;">130.000 m³ · 16 anos</div>
+        <div style="margin-top:10px;display:inline-block;background:rgba(255,200,0,.2);color:#ffd700;font-size:10px;font-weight:700;padding:3px 10px;border-radius:50px;">⏳ Aguarda inventário</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--verde3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Área 4 — 312 ha</div>
+        <div style="font-size:28px;font-weight:900;color:#fff;line-height:1;">~87.200 t</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:4px;">108.969 m³ · 8 anos</div>
+        <div style="margin-top:10px;display:inline-block;background:rgba(100,180,255,.2);color:#7ecfff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:50px;">🌱 Em crescimento</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--verde3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Área 5 — 653 ha</div>
+        <div style="font-size:28px;font-weight:900;color:#fff;line-height:1;">~280.000 t</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:4px;">350.000 m³ · 30 anos</div>
+        <div style="margin-top:10px;display:inline-block;background:rgba(255,200,0,.2);color:#ffd700;font-size:10px;font-weight:700;padding:3px 10px;border-radius:50px;">⏳ Aguarda inventário</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--verde3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Área 6 — 136 ha</div>
+        <div style="font-size:28px;font-weight:900;color:#fff;line-height:1;">~48.000 t</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:4px;">60.000 m³ · 11 anos</div>
+        <div style="margin-top:10px;display:inline-block;background:rgba(74,158,63,.25);color:var(--verde3);font-size:10px;font-weight:700;padding:3px 10px;border-radius:50px;">🛒 Comercialização</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--verde3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Área 7 — 140 ha</div>
+        <div style="font-size:28px;font-weight:900;color:#fff;line-height:1;">~72.000 t</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:4px;">90.000 m³ · 18 anos</div>
+        <div style="margin-top:10px;display:inline-block;background:rgba(74,158,63,.25);color:var(--verde3);font-size:10px;font-weight:700;padding:3px 10px;border-radius:50px;">✅ Pronto p/ colheita</div>
+      </div>
+
+      <!-- TOTAL -->
+      <div style="background:linear-gradient(135deg,var(--verde2),var(--verde1));border-radius:16px;padding:20px;text-align:center;border:2px solid var(--verde3);">
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.8);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">TOTAL · 1.702 ha</div>
+        <div style="font-size:28px;font-weight:900;color:#fff;line-height:1;">~649.700 t</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.75);margin-top:4px;">812.120 m³ · 7 áreas</div>
+        <div style="margin-top:10px;font-size:11px;font-weight:700;color:rgba(255,255,255,.9);">R$ 79 milhões est.</div>
+      </div>
+
+    </div>
+
+    <!-- Legenda -->
+    <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;">
+      <span style="font-size:12px;color:rgba(255,255,255,.6);font-weight:600;">✅ Pronto para colheita &nbsp;·&nbsp; ⏳ Aguarda inventário &nbsp;·&nbsp; 🌱 Em crescimento &nbsp;·&nbsp; 🛒 Em comercialização</span>
+    </div>
+    <p style="text-align:center;font-size:11px;color:rgba(255,255,255,.35);margin-top:14px;">* Conversão: 1 m³ madeira sólida = 0,8 t (eucalipto). Portfólio gerado em 14/02/2026. Valores estimados sujeitos a inventário atualizado.</p>
+  </div>
+</section>
+
+<!-- ══ LOGÍSTICA ══ -->
+<section id="logistica" style="background:var(--bg-claro);">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:50px;">
+      <div class="section-tag">Logística e Entrega</div>
+      <h2 class="section-h">Capacidade de Entrega na Região</h2>
+      <p class="section-p" style="max-width:620px;margin:0 auto;">A produção de Silveiras/SP é estrategicamente posicionada para abastecer as principais regiões industriais do Estado de São Paulo com cavaco e toras de Saligno Vermelho.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:start;">
+
+      <!-- Regiões atendidas -->
+      <div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+
+          <div style="background:#fff;border-radius:16px;padding:22px 24px;box-shadow:0 2px 16px rgba(0,0,0,.07);border-left:5px solid var(--verde2);">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div style="font-size:36px;">🏙️</div>
+              <div>
+                <h4 style="font-size:16px;font-weight:800;color:var(--dark);margin-bottom:4px;">Grande São Paulo</h4>
+                <p style="font-size:13px;color:#666;line-height:1.6;">Capital e região metropolitana. Acesso via Rodovia Presidente Dutra (BR-116). Entrega direta às indústrias com frota própria.</p>
+                <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+                  <span style="background:rgba(74,158,63,.12);color:var(--verde1);font-size:10px;font-weight:700;padding:3px 10px;border-radius:50px;border:1px solid rgba(74,158,63,.25);">~180 km de Silveiras</span>
+                  <span style="background:rgba(74,158,63,.12);color:var(--verde1);font-size:10px;font-weight:700;padding:3px 10px;border-radius:50px;border:1px solid rgba(74,158,63,.25);">Via Dutra</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#fff;border-radius:16px;padding:22px 24px;box-shadow:0 2px 16px rgba(0,0,0,.07);border-left:5px solid var(--marrom2);">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div style="font-size:36px;">🏭</div>
+              <div>
+                <h4 style="font-size:16px;font-weight:800;color:var(--dark);margin-bottom:4px;">ABC Paulista</h4>
+                <p style="font-size:13px;color:#666;line-height:1.6;">Santo André, São Bernardo do Campo, São Caetano. Polo industrial de alta demanda por biomassa para caldeiras. Atendimento prioritário.</p>
+                <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+                  <span style="background:rgba(122,69,32,.1);color:var(--marrom2);font-size:10px;font-weight:700;padding:3px 10px;border-radius:50px;border:1px solid rgba(122,69,32,.2);">Polo industrial</span>
+                  <span style="background:rgba(122,69,32,.1);color:var(--marrom2);font-size:10px;font-weight:700;padding:3px 10px;border-radius:50px;border:1px solid rgba(122,69,32,.2);">Alta demanda</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#fff;border-radius:16px;padding:22px 24px;box-shadow:0 2px 16px rgba(0,0,0,.07);border-left:5px solid #2e6ab0;">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div style="font-size:36px;">✈️</div>
+              <div>
+                <h4 style="font-size:16px;font-weight:800;color:var(--dark);margin-bottom:4px;">São José dos Campos</h4>
+                <p style="font-size:13px;color:#666;line-height:1.6;">Vale do Paraíba. Polo tecnológico e industrial com forte demanda por biomassa. A ~60 km de Silveiras pela Rod. Tamoios / Dutra.</p>
+                <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+                  <span style="background:rgba(46,106,176,.1);color:#2e6ab0;font-size:10px;font-weight:700;padding:3px 10px;border-radius:50px;border:1px solid rgba(46,106,176,.2);">~60 km</span>
+                  <span style="background:rgba(46,106,176,.1);color:#2e6ab0;font-size:10px;font-weight:700;padding:3px 10px;border-radius:50px;border:1px solid rgba(46,106,176,.2);">Rod. Tamoios</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#fff;border-radius:16px;padding:22px 24px;box-shadow:0 2px 16px rgba(0,0,0,.07);border-left:5px solid #8a6a2d;">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div style="font-size:36px;">🌄</div>
+              <div>
+                <h4 style="font-size:16px;font-weight:800;color:var(--dark);margin-bottom:4px;">Vale do Paraíba</h4>
+                <p style="font-size:13px;color:#666;line-height:1.6;">Toda a calha do Vale — Guaratinguetá, Aparecida, Jacareí, Taubaté. Região com forte presença de indústrias consumidoras de biomassa.</p>
+                <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+                  <span style="background:rgba(138,106,45,.1);color:#6a4a1a;font-size:10px;font-weight:700;padding:3px 10px;border-radius:50px;border:1px solid rgba(138,106,45,.2);">Corredor BR-116</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Capacidade logística -->
+      <div>
+        <div style="background:linear-gradient(135deg,#1a2e1a,#2d6a2d);border-radius:22px;padding:36px;color:#fff;">
+          <h3 style="font-size:18px;font-weight:900;color:var(--verde3);margin-bottom:24px;text-align:center;">📦 Capacidade de Entrega</h3>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="background:rgba(255,255,255,.07);border-radius:12px;padding:16px;display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:13px;color:rgba(255,255,255,.8);font-weight:600;">Frota de entrega</span>
+              <span style="font-size:14px;font-weight:900;color:var(--verde3);">Própria</span>
+            </div>
+            <div style="background:rgba(255,255,255,.07);border-radius:12px;padding:16px;display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:13px;color:rgba(255,255,255,.8);font-weight:600;">Raio de entrega</span>
+              <span style="font-size:14px;font-weight:900;color:var(--verde3);">até 250 km</span>
+            </div>
+            <div style="background:rgba(255,255,255,.07);border-radius:12px;padding:16px;display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:13px;color:rgba(255,255,255,.8);font-weight:600;">Volume mínimo</span>
+              <span style="font-size:14px;font-weight:900;color:var(--verde3);">Sob consulta</span>
+            </div>
+            <div style="background:rgba(255,255,255,.07);border-radius:12px;padding:16px;display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:13px;color:rgba(255,255,255,.8);font-weight:600;">Contrato mínimo</span>
+              <span style="font-size:14px;font-weight:900;color:var(--verde3);">Spot ou mensal</span>
+            </div>
+            <div style="background:rgba(255,255,255,.07);border-radius:12px;padding:16px;display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:13px;color:rgba(255,255,255,.8);font-weight:600;">Prazo de entrega</span>
+              <span style="font-size:14px;font-weight:900;color:var(--verde3);">Acordado em contrato</span>
+            </div>
+            <div style="background:rgba(255,255,255,.07);border-radius:12px;padding:16px;display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:13px;color:rgba(255,255,255,.8);font-weight:600;">Documentação</span>
+              <span style="font-size:14px;font-weight:900;color:var(--verde3);">DOF + NF completa</span>
+            </div>
+          </div>
+          <div style="margin-top:22px;background:rgba(74,158,63,.2);border:1px solid var(--verde3);border-radius:12px;padding:16px;text-align:center;">
+            <p style="font-size:14px;font-weight:800;color:#fff;">🎯 Produção dedicada para atender<br/><span style="color:var(--verde3);">SP Capital · ABC · São José dos Campos</span></p>
+          </div>
+        </div>
+
+        <!-- Rodovias -->
+        <div style="margin-top:20px;background:#fff;border-radius:16px;padding:22px 24px;box-shadow:0 2px 16px rgba(0,0,0,.07);">
+          <h4 style="font-size:14px;font-weight:800;color:var(--dark);margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px;">🛣️ Principais Acessos</h4>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid #eee;">
+              <span style="font-weight:700;color:#444;">BR-116 — Presidente Dutra</span>
+              <span style="color:var(--verde1);font-weight:700;">Principal</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid #eee;">
+              <span style="font-weight:700;color:#444;">SP-99 — Rod. Tamoios</span>
+              <span style="color:var(--verde1);font-weight:700;">SJC / Litoral</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;">
+              <span style="font-weight:700;color:#444;">SP-068 — Rod. dos Tropeiros</span>
+              <span style="color:var(--verde1);font-weight:700;">Vale Paraíba</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CLIENTES ══ -->
+<section id="clientes">
+  <div class="container">
+    <div class="cli-header">
+      <div class="section-tag">Nossos Clientes</div>
+      <h2 class="section-h">Confiança das Maiores Indústrias do Brasil</h2>
+      <p class="section-p">Fornecemos biomassa para os maiores grupos industriais do país, com qualidade e confiabilidade comprovadas.</p>
+    </div>
+    <div class="cli-logos">
+      <div class="cli-card cli-jbs">
+        <div class="cli-nome">JBS</div>
+        <div class="cli-seg">Frigoríficos / Alimentos</div>
+      </div>
+      <div class="cli-card cli-klab">
+        <div class="cli-nome">Klabin</div>
+        <div class="cli-seg">Papel & Celulose</div>
+      </div>
+      <div class="cli-card cli-suz">
+        <div class="cli-nome">Suzano</div>
+        <div class="cli-seg">Papel & Celulose</div>
+      </div>
+    </div>
+    <div class="cli-trust">
+      <p>🏆 Nosso cavaco alimenta caldeiras de <span>gigantes da indústria brasileira</span> — da agroindústria ao setor de celulose, entregamos confiança em cada tonelada.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EQUIPE ══ -->
+<section id="equipe">
+  <div class="container">
+    <div class="eq-header">
+      <div class="section-tag">Nossa Equipe</div>
+      <h2 class="section-h">LHA Florestal & Biomassa</h2>
+      <p class="section-p" style="max-width:560px;margin:0 auto;">Empresa de produção florestal. A <strong>BBS Florestal</strong> atua como parceira comercial, responsável pela venda e relacionamento com clientes.</p>
+    </div>
+    <div class="eq-grid" style="justify-content:center;">
+
+      <!-- LHA - André -->
+      <div class="eq-card">
+        <div class="eq-avatar av-a">👤</div>
+        <div class="nome">André Luiz Pires Teixeira</div>
+        <div class="cargo">LHA Florestal & Biomassa · Sócio Fundador</div>
+        <div class="territorio">🇧🇷 Brasil — Produção Florestal</div>
+        <div class="eq-contatos">
+          <div class="eq-ct"><span class="ic">📞</span>(31) 99560-1628 / (37) 9822-7802</div>
+          <div class="eq-ct"><span class="ic">✉️</span>lhaflorestalbiomassa@hotmail.com</div>
+        </div>
+      </div>
+
+      <!-- BBS - Bruno -->
+      <div class="eq-card">
+        <div class="eq-avatar av-b">👤</div>
+        <div class="nome">Bruno Barbosa Silva</div>
+        <div class="cargo">BBS Florestal · Diretor Comercial</div>
+        <div class="territorio">🇧🇷 Ribas do Rio Pardo — MS</div>
+        <div class="eq-contatos">
+          <div class="eq-ct"><span class="ic">📞</span>(67) 99172-3555</div>
+          <div class="eq-ct"><span class="ic">✉️</span>mbforest1@gmail.com</div>
+        </div>
+      </div>
+
+    </div>
+    <div style="margin-top:36px;text-align:center;background:#fff;border-radius:16px;padding:22px 30px;border:1px solid #dde8d5;max-width:700px;margin-left:auto;margin-right:auto;">
+      <p style="font-size:14px;color:#555;font-weight:600;">🔒 Todos os representantes estão em conformidade com os protocolos <strong style="color:var(--verde1);">KYC · AML · CFT · FCPA</strong> — Código CIS: <strong>BBS-FLORESTAL-BR-2026-CIS · v4.0</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESSO ══ -->
+<section id="processo" style="background:var(--bg-claro);">
+  <div class="container">
+    <div class="proc-header">
+      <div class="section-tag">Como Funciona</div>
+      <h2 class="section-h">Do Pedido à Entrega</h2>
+      <p class="section-p">Processo simples, transparente e rastreável do início ao fim.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step">
+        <div class="s-num">📋</div>
+        <h4>1. Solicitação</h4>
+        <p>Você nos informa volume necessário e especificações do cavaco.</p>
+      </div>
+      <div class="step">
+        <div class="s-num">💬</div>
+        <h4>2. Cotação</h4>
+        <p>Enviamos proposta com preço, prazo e condições em poucas horas.</p>
+      </div>
+      <div class="step">
+        <div class="s-num">✅</div>
+        <h4>3. Contrato</h4>
+        <p>Formalização do acordo e cronograma de entregas definido.</p>
+      </div>
+      <div class="step">
+        <div class="s-num">🌳</div>
+        <h4>4. Produção</h4>
+        <p>A LHA realiza colheita, picagem e controle de qualidade do lote.</p>
+      </div>
+      <div class="step">
+        <div class="s-num">🚚</div>
+        <h4>5. Entrega</h4>
+        <p>Transporte com frota própria diretamente na sua planta industrial.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTATO ══ -->
+<section id="contato">
+  <div class="container">
+    <div class="ct-grid">
+      <div class="ct-info">
+        <div class="section-tag dark-tag">Fale Conosco</div>
+        <h2>Solicite sua <span>Cotação Gratuita</span></h2>
+        <p class="section-p">Entre em contato e descubra como a BBS Florestal pode suprir suas necessidades energéticas de forma sustentável e responsável. Atendemos desde volumes menores até grandes contratos industriais.</p>
+        <div class="ct-items">
+          <div class="ct-item">
+            <div class="ct-ic">👤</div>
+            <div>
+              <h4>Diretor Comercial</h4>
+              <p>Bruno Barbosa Silva</p>
+            </div>
+          </div>
+          <div class="ct-item">
+            <div class="ct-ic">📞</div>
+            <div>
+              <h4>WhatsApp / Telefone</h4>
+              <p>(67) 99172-3555</p>
+            </div>
+          </div>
+          <div class="ct-item">
+            <div class="ct-ic">📧</div>
+            <div>
+              <h4>E-mail</h4>
+              <p>mbforest1@gmail.com</p>
+            </div>
+          </div>
+          <div class="ct-item">
+            <div class="ct-ic">🏢</div>
+            <div>
+              <h4>CNPJ</h4>
+              <p>42.228.788/0001-38</p>
+            </div>
+          </div>
+          <div class="ct-item">
+            <div class="ct-ic">📍</div>
+            <div>
+              <h4>Sede</h4>
+              <p>Ribas do Rio Pardo — MS · CEP 79.180-000</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-box">
+        <h3>🌿 Solicitar Cotação de Cavaco</h3>
+        <div class="form-row">
+          <div class="fg"><label>Nome *</label><input type="text" placeholder="Seu nome"/></div>
+          <div class="fg"><label>Empresa *</label><input type="text" placeholder="Razão social"/></div>
+        </div>
+        <div class="form-row">
+          <div class="fg"><label>WhatsApp *</label><input type="tel" placeholder="(00) 00000-0000"/></div>
+          <div class="fg"><label>E-mail *</label><input type="email" placeholder="seu@email.com"/></div>
+        </div>
+        <div class="fg">
+          <label>Tipo de Produto *</label>
+          <select>
+            <option value="">Selecione...</option>
+            <option>Cavaco de Eucalipto</option>
+            <option>Biomassa para Caldeira</option>
+            <option>Cavaco para Celulose</option>
+            <option>Contrato de Fornecimento Mensal</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="fg"><label>Volume Mensal (ton) *</label><input type="text" placeholder="Ex: 500 toneladas"/></div>
+          <div class="fg">
+            <label>Estado de Entrega *</label>
+            <select>
+              <option value="">Selecione...</option>
+              <option>TO – Tocantins</option>
+              <option>MG – Minas Gerais</option>
+              <option>ES – Espírito Santo</option>
+              <option>SP – São Paulo</option>
+              <option>PR – Paraná</option>
+              <option>MS – Mato Grosso do Sul</option>
+              <option>Outro estado</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg"><label>Observações</label><textarea placeholder="Especificações, granulometria, umidade, frequência de entrega..."></textarea></div>
+        <button class="btn-form" onclick="alert('✅ Solicitação enviada! Bruno Barbosa Silva entrará em contato em breve.\n\nOu ligue agora:\n(67) 99172-3555\nmbforest1@gmail.com')">
+          🚀 Enviar Solicitação de Cotação
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <div class="logo-badge" style="width:64px;height:64px;font-size:13px;font-weight:900;letter-spacing:0;">LHA<br/><span style="font-size:9px;opacity:.8;">BBS</span></div>
+      <div class="logo-text" style="margin-top:10px;">
+        <div class="t1" style="color:#fff;">LHA · <span style="color:var(--verde3);">BBS</span></div>
+        <div class="t2">Florestal · Cavaco & Biomassa</div>
+      </div>
+      <p>LHA Florestal & Biomassa — empresa de produção · BBS Florestal — parceira comercial. Fornecimento de cavaco e biomassa para a indústria brasileira.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Navegação</h4>
+      <a href="#historia">Nossa História</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#netzero">NetZero Pallet®</a>
+      <a href="#equipe">Nossa Equipe</a>
+      <a href="#clientes">Clientes</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contato</h4>
+      <p style="font-size:11px;font-weight:700;color:var(--verde3);margin-bottom:2px;">LHA — Produção</p>
+      <p>👤 André Luiz Fernando</p>
+      <p>📞 (31) 99560-1628 / (37) 9822-7802</p>
+      <p>✉️ lhaflorestalbiomassa@hotmail.com</p>
+      <p style="margin-top:8px;font-size:11px;font-weight:700;color:var(--verde3);margin-bottom:2px;">BBS Florestal — Comercial</p>
+      <p>👤 Bruno Barbosa Silva</p>
+      <p>📞 (67) 99172-3555</p>
+      <p>✉️ mbforest1@gmail.com</p>
+      <p>📍 Ribas do Rio Pardo — MS</p>
+      <p style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.35);">BBS CNPJ: 42.228.788/0001-38 | LHA CNPJ: 23.932.037/0001-53</p>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p>© 2026 LHA Florestal & Biomassa · BBS Florestal — Todos os direitos reservados.</p>
+    <p class="foot-cnpj">BBS CNPJ: 42.228.788/0001-38 | LHA CNPJ: 23.932.037/0001-53 | Ribas do Rio Pardo — MS</p>
+  </div>
+</footer>
+
+<!-- ══ WHATSAPP ══ -->
+<a href="https://wa.me/5567991723555" target="_blank" class="wa-btn" title="Fale pelo WhatsApp">💬</a>
+
+<script>
+  // Folhas flutuantes
+  const lc = document.getElementById('leaves');
+  for(let i=0;i<18;i++){
+    const l = document.createElement('div');
+    l.className='leaf';
+    l.style.cssText=`
+      left:${Math.random()*100}%;
+      width:${Math.random()*80+30}px;
+      animation-duration:${Math.random()*14+10}s;
+      animation-delay:${Math.random()*12}s;
+      opacity:${Math.random()*.4+.05};
+      transform:rotate(${Math.random()*360}deg);
+    `;
+    lc.appendChild(l);
+  }
+
+  // Scroll suave
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+    });
+  });
+
+  // Navbar no scroll
+  window.addEventListener('scroll',()=>{
+    document.getElementById('navbar').style.background =
+      window.scrollY>60 ? 'rgba(6,13,6,.99)' : 'rgba(26,46,26,.96)';
+  });
+</script>
+</body>
+</html>
