@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Relatório de Manutenção · Trator de Apoio LBM 04</title>
+  <style>
+    :root {
+      --verde1:  #2d6a2d;
+      --verde2:  #4a9e3f;
+      --verde3:  #7dc95e;
+      --marrom1: #5c3010;
+      --marrom2: #7a4520;
+      --bg-claro:#f0f4ec;
+      --dark:    #1a2e1a;
+      --branco:  #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #222;
+      background: var(--bg-claro);
+      padding: 40px 16px 80px;
+    }
+    .sheet {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.10);
+      overflow: hidden;
+      border: 1px solid #e2ead9;
+    }
+    .head {
+      background: linear-gradient(135deg, var(--dark), var(--verde1));
+      color: #fff;
+      padding: 34px 40px;
+    }
+    .head .brand { display:flex; align-items:center; gap:12px; margin-bottom:22px; }
+    .brand-badge {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--verde2), var(--marrom2));
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900; font-size:13px; letter-spacing:-.5px; border:2px solid rgba(255,255,255,.25);
+    }
+    .brand-name { font-size:13px; font-weight:800; letter-spacing:1px; text-transform:uppercase; color: var(--verde3); }
+    .head h1 { font-size: 22px; font-weight: 900; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 6px; }
+    .head .sub { font-size: 14px; color: rgba(255,255,255,.75); }
+    .periodo {
+      display:flex; gap:28px; margin-top:20px; flex-wrap:wrap;
+    }
+    .periodo .item {
+      background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18);
+      border-radius: 10px; padding: 10px 18px;
+    }
+    .periodo .item span { display:block; }
+    .periodo .lbl { font-size:10px; text-transform:uppercase; letter-spacing:1px; color: var(--verde3); font-weight:700; margin-bottom:2px; }
+    .periodo .val { font-size:15px; font-weight:700; }
+
+    .body-content { padding: 34px 40px 10px; }
+    section.block { margin-bottom: 32px; }
+    .block h2 {
+      font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+      color: var(--verde1); padding-bottom: 10px; margin-bottom: 16px;
+      border-bottom: 2px solid var(--verde2);
+    }
+    ul.check-list { list-style: none; }
+    ul.check-list li {
+      display:flex; align-items:flex-start; gap:10px;
+      padding: 10px 0; border-bottom: 1px solid #eef2ea; font-size: 14.5px; line-height:1.5;
+    }
+    ul.check-list li:last-child { border-bottom:none; }
+    ul.check-list .mark { flex-shrink:0; font-size:16px; line-height:1.4; }
+    ul.check-list .num { font-weight:700; color: var(--verde1); margin-right:2px; }
+
+    table.custos { width:100%; border-collapse: collapse; font-size: 13.5px; }
+    table.custos th {
+      text-align:left; background: var(--bg-claro); color: var(--verde1);
+      font-size:11px; text-transform:uppercase; letter-spacing:.5px; font-weight:800;
+      padding: 10px 12px; border-bottom: 2px solid var(--verde2);
+    }
+    table.custos td { padding: 10px 12px; border-bottom: 1px solid #eef2ea; }
+    table.custos td.num, table.custos th.num { text-align:right; }
+    table.custos tr.total-row td {
+      font-weight: 800; background: var(--bg-claro); color: var(--verde1); border-bottom:none;
+    }
+    .tag {
+      display:inline-block; font-size:11px; font-weight:700; padding:3px 10px; border-radius:50px;
+    }
+    .tag.mec { background: rgba(122,69,32,.12); color: var(--marrom2); }
+    .tag.hid { background: rgba(74,158,63,.14); color: var(--verde1); }
+
+    .resumo-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:16px; }
+    .resumo-card {
+      background: var(--bg-claro); border:1px solid #dde8d5; border-radius:14px;
+      padding: 18px; text-align:center;
+    }
+    .resumo-card .n { font-size:26px; font-weight:900; color: var(--verde1); }
+    .resumo-card .l { font-size:11.5px; color:#555; margin-top:4px; }
+
+    .conclusao {
+      background: linear-gradient(135deg, rgba(74,158,63,.10), rgba(45,106,45,.06));
+      border: 1px solid rgba(74,158,63,.3); border-radius: 14px;
+      padding: 20px 24px; font-size: 14.5px; line-height:1.7; color:#264a26;
+      display:flex; gap:12px; align-items:flex-start;
+    }
+
+    .foot {
+      padding: 24px 40px 32px; display:flex; justify-content:space-between; align-items:center;
+      flex-wrap:wrap; gap:12px; border-top: 1px solid #eef2ea;
+    }
+    .foot p { font-size:11.5px; color:#888; }
+    .btn-print {
+      background: var(--verde2); color:#fff; border:none; padding:10px 20px;
+      border-radius:50px; font-size:13px; font-weight:700; cursor:pointer;
+    }
+    .btn-print:hover { background: var(--verde1); }
+
+    @media (max-width: 640px) {
+      .body-content, .head, .foot { padding-left:22px; padding-right:22px; }
+      .resumo-grid { grid-template-columns: 1fr; }
+    }
+    @media print {
+      body { background:#fff; padding:0; }
+      .sheet { box-shadow:none; border:none; border-radius:0; max-width:100%; }
+      .btn-print { display:none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="head">
+      <div class="brand">
+        <div class="brand-badge">LHA</div>
+        <div class="brand-name">LHA · BBS Florestal</div>
+      </div>
+      <h1>Relatório de Manutenção — Trator de Apoio LBM 04</h1>
+      <div class="sub">Manutenção corretiva e preventiva do equipamento de apoio florestal</div>
+      <div class="periodo">
+        <div class="item"><span class="lbl">Início</span><span class="val">16/07/2026</span></div>
+        <div class="item"><span class="lbl">Conclusão</span><span class="val">23/07/2026</span></div>
+        <div class="item"><span class="lbl">Status</span><span class="val">🟢✔️ Concluído</span></div>
+      </div>
+    </div>
+
+    <div class="body-content">
+
+      <section class="block">
+        <h2>Pendências Programadas</h2>
+        <ul class="check-list">
+          <li><span class="mark">🟢✔️</span><div><span class="num">1.</span> Verificar cardan da tomada de força — Concluído.</div></li>
+          <li><span class="mark">🟢✔️</span><div><span class="num">2.</span> Verificar e eliminar vazamento de óleo hidráulico — Concluído.</div></li>
+          <li><span class="mark">🟢✔️</span><div><span class="num">3.</span> Corrigir folga nos munhões do trator — Concluído.</div></li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h2>Serviços Executados</h2>
+        <ul class="check-list">
+          <li><span class="mark">🟢✔️</span><div><span class="num">4.</span> Lavagem completa do equipamento.</div></li>
+          <li><span class="mark">🟢✔️</span><div><span class="num">5.</span> Troca do óleo do guincho.</div></li>
+          <li><span class="mark">🟢✔️</span><div><span class="num">6.</span> Revisão completa do sistema elétrico (buzina, iluminação e componentes elétricos).</div></li>
+          <li><span class="mark">🟢✔️</span><div><span class="num">7.</span> Substituição de 01 retentor da tomada de força.</div></li>
+          <li><span class="mark">🟢✔️</span><div><span class="num">8.</span> Substituição de 01 Lexan da porta.</div></li>
+          <li><span class="mark">🟢✔️</span><div><span class="num">9.</span> Substituição de 01 engrenagem do guincho.</div></li>
+          <li><span class="mark">🟢✔️</span><div><span class="num">10.</span> Substituição de 02 terminais de direção da barra axial.</div></li>
+          <li><span class="mark">🟢✔️</span><div><span class="num">11.</span> Substituição da bomba hidráulica.</div></li>
+          <li><span class="mark">🟢✔️</span><div><span class="num">12.</span> Eliminação do vazamento no guincho e realização de testes operacionais.</div></li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h2>Custos da Manutenção</h2>
+        <table class="custos">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Categoria</th>
+              <th>Data</th>
+              <th class="num">Qtd.</th>
+              <th class="num">Valor R$</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Barra de direção</td><td><span class="tag mec">Mecânico</span></td><td>16/07/2026</td><td class="num">1</td><td class="num">500,00</td></tr>
+            <tr><td>Terminal axial – Rótula</td><td><span class="tag mec">Mecânico</span></td><td>16/07/2026</td><td class="num">1</td><td class="num">200,00</td></tr>
+            <tr><td>Barra de direção lado esquerdo</td><td><span class="tag mec">Mecânico</span></td><td>17/07/2026</td><td class="num">1</td><td class="num">325,00</td></tr>
+            <tr><td>Retentor p/ guincho</td><td><span class="tag hid">Hidráulico</span></td><td>20/07/2026</td><td class="num">1</td><td class="num">44,49</td></tr>
+            <tr><td>Bomba da direção (bomba hidráulica + junta)</td><td><span class="tag hid">Hidráulico</span></td><td>21/07/2026</td><td class="num">1</td><td class="num">1.790,00</td></tr>
+            <tr><td>Lona de freio trançada 3x3/8 Frasle</td><td><span class="tag mec">Mecânico</span></td><td>21/07/2026</td><td class="num">1</td><td class="num">533,50</td></tr>
+            <tr><td>Mangueira de sucção da bomba</td><td><span class="tag hid">Hidráulico</span></td><td>22/07/2026</td><td class="num">1</td><td class="num">28,00</td></tr>
+            <tr><td>Anéis O-ring Viton (kit vedação da bomba)</td><td><span class="tag hid">Hidráulico</span></td><td>22/07/2026</td><td class="num">4</td><td class="num">15,50</td></tr>
+            <tr class="total-row"><td>Total</td><td></td><td></td><td class="num">11</td><td class="num">3.436,49</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="block">
+        <h2>Resumo da Manutenção</h2>
+        <div class="resumo-grid">
+          <div class="resumo-card">
+            <div class="n">3</div>
+            <div class="l">🟢✔️ Pendências programadas concluídas</div>
+          </div>
+          <div class="resumo-card">
+            <div class="n">9</div>
+            <div class="l">🟢✔️ Serviços executados</div>
+          </div>
+          <div class="resumo-card">
+            <div class="n">12</div>
+            <div class="l">🟢✔️ Total de execuções realizadas</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2>Conclusão</h2>
+        <div class="conclusao">
+          <span>🟢✔️</span>
+          <p>Todas as pendências do Trator de Apoio LBM 04 foram concluídas com sucesso. Após os reparos, substituições de componentes, revisões e testes operacionais, o equipamento foi liberado para retorno às operações, estando em plenas condições de trabalho.</p>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="foot">
+      <p>LHA Florestal &amp; Biomassa · BBS Florestal — Relatório gerado em 23/07/2026.</p>
+      <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
+    </div>
+  </div>
+</body>
+</html>
