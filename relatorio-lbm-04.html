@@ -236,9 +236,15 @@
       .data-table td:empty { display:none; }
     }
     @media print {
-      body { background:#fff; padding:0; color:#111; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body { padding:0; }
       .sheet { box-shadow:none; border:none; border-radius:0; max-width:100%; }
       .btn-print { display:none; }
+      section.block { break-inside: avoid; }
+      ul.check-list li, .resumo-card, .labor-total, .conclusao, .callout,
+      table.data-table tr, .bar-row, .chart-row, .donut-wrap { break-inside: avoid; }
+      .head { break-after: avoid; }
+      .block h2 { break-after: avoid; }
     }
   </style>
 </head>
