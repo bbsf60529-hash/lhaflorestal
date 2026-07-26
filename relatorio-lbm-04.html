@@ -19,6 +19,8 @@
       --blue-dim:  rgba(91,155,245,.14);
       --green:     #34d178;
       --green-dim: rgba(52,209,120,.14);
+      --violet:    #9b8bf4;
+      --violet-dim:rgba(155,139,244,.14);
       --text:      #f2f5fa;
       --text-2:    #a4afc4;
       --text-3:    #6b7690;
@@ -93,15 +95,15 @@
     ul.check-list .mark { flex-shrink:0; font-size:19px; line-height:1.4; }
     ul.check-list .num { font-weight:800; color: var(--accent); margin-right:2px; }
 
-    table.custos { width:100%; border-collapse: collapse; font-size: 13.5px; }
-    table.custos th {
+    .data-table { width:100%; border-collapse: collapse; font-size: 13.5px; }
+    .data-table th {
       text-align:left; background: var(--surface-2); color: var(--accent);
       font-size:11px; text-transform:uppercase; letter-spacing:.6px; font-weight:800;
       padding: 11px 12px; border-bottom: 2px solid var(--accent);
     }
-    table.custos td { padding: 11px 12px; border-bottom: 1px solid var(--border); color: var(--text); }
-    table.custos td.num, table.custos th.num { text-align:right; }
-    table.custos tr.total-row td {
+    .data-table td { padding: 11px 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+    .data-table td.num, .data-table th.num { text-align:right; }
+    .data-table tr.total-row td {
       font-weight: 800; background: var(--surface-2); color: var(--accent-2); border-bottom:none;
     }
     .tag {
@@ -134,6 +136,27 @@
     .bar-fill { height:100%; border-radius:6px; }
     .bar-fill.mec { background: linear-gradient(90deg, var(--accent-deep), var(--accent)); }
     .bar-fill.hid { background: linear-gradient(90deg, #2f5fb0, var(--blue)); }
+    .bar-fill.labor { background: linear-gradient(90deg, #5d4fc4, var(--violet)); }
+
+    .callout {
+      display:flex; gap:12px; align-items:flex-start;
+      background: var(--violet-dim); border:1px solid rgba(155,139,244,.35); border-radius: 12px;
+      padding: 14px 18px; font-size:13.5px; line-height:1.65; color: var(--text-2); margin-bottom:18px;
+    }
+    .callout strong { color: var(--text); }
+    .callout .ic { flex-shrink:0; font-size:16px; }
+
+    .labor-total {
+      margin-top:18px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:14px;
+      background: var(--surface-2); border:1px solid var(--violet); border-radius: 14px; padding: 18px 22px;
+    }
+    .labor-total .lt-calc { font-size:13px; color: var(--text-2); }
+    .labor-total .lt-calc strong { color: var(--text); }
+    .labor-total .lt-val { font-size:24px; font-weight:900; color: var(--violet); }
+    .labor-total .lt-tag {
+      font-size:10px; text-transform:uppercase; letter-spacing:.6px; font-weight:800; color: var(--text-3);
+      display:block; margin-top:2px;
+    }
     .bar-val { font-size:12px; font-weight:700; color: var(--text); text-align:right; }
 
     .prazo-compare { margin-top: 6px; }
@@ -156,7 +179,7 @@
     p.src { font-size:11px; color: var(--text-3); margin-top:14px; line-height:1.6; }
     p.src em { color: var(--text-2); font-style:normal; }
 
-    .resumo-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:16px; }
+    .resumo-grid { display:grid; grid-template-columns: repeat(4,1fr); gap:16px; }
     .resumo-card {
       background: var(--surface-2); border:1px solid var(--border); border-radius:14px;
       padding: 18px; text-align:center;
@@ -165,6 +188,7 @@
     .resumo-card.c-green .n { color: var(--green); }
     .resumo-card.c-blue .n { color: var(--blue); }
     .resumo-card.c-accent .n { color: var(--accent); }
+    .resumo-card.c-violet .n { color: var(--violet); font-size:22px; }
     .resumo-card .l { font-size:11.5px; color: var(--text-2); margin-top:4px; }
 
     .conclusao {
@@ -187,29 +211,29 @@
 
     @media (max-width: 640px) {
       .body-content, .head, .foot { padding-left:22px; padding-right:22px; }
-      .resumo-grid { grid-template-columns: 1fr; }
+      .resumo-grid { grid-template-columns: repeat(2,1fr); }
       .chart-row { flex-direction:column; align-items:stretch; }
       .bar-row { grid-template-columns: 100px 1fr 54px; }
 
-      table.custos thead { display:none; }
-      table.custos, table.custos tbody, table.custos tr, table.custos td { display:block; width:100%; }
-      table.custos tr {
+      .data-table thead { display:none; }
+      .data-table, .data-table tbody, .data-table tr, .data-table td { display:block; width:100%; }
+      .data-table tr {
         border:1px solid var(--border); border-radius:12px; padding:12px 14px; margin-bottom:10px;
       }
-      table.custos tr.total-row { border-color: var(--accent); }
-      table.custos td {
+      .data-table tr.total-row { border-color: var(--accent); }
+      .data-table td {
         border-bottom:none !important; padding:5px 0;
         display:flex; align-items:center; justify-content:space-between; gap:10px;
       }
-      table.custos td:first-child {
+      .data-table td:first-child {
         padding-top:0; font-weight:800; color: var(--text); font-size:15px; display:block;
       }
-      table.custos td:not(:first-child)::before {
+      .data-table td:not(:first-child)::before {
         content: attr(data-label);
         font-size:10.5px; text-transform:uppercase; letter-spacing:.4px; color: var(--text-3); font-weight:700;
       }
-      table.custos td.num { text-align:right; font-size:14px; }
-      table.custos td:empty { display:none; }
+      .data-table td.num { text-align:right; font-size:14px; }
+      .data-table td:empty { display:none; }
     }
     @media print {
       body { background:#fff; padding:0; color:#111; }
@@ -262,8 +286,8 @@
       </section>
 
       <section class="block">
-        <h2><span class="h-badge">3</span>Custos da Manutenção</h2>
-        <table class="custos">
+        <h2><span class="h-badge">3</span>Custos da Manutenção — Peças</h2>
+        <table class="custos data-table">
           <thead>
             <tr>
               <th>Item</th>
@@ -283,13 +307,60 @@
             <tr><td>Mangueira de sucção da bomba</td><td data-label="Categoria"><span class="tag hid">Hidráulico</span></td><td data-label="Data">22/07/2026</td><td class="num" data-label="Qtd.">1</td><td class="num" data-label="Valor R$">28,00</td></tr>
             <tr><td>Anéis O-ring Viton (kit vedação da bomba)</td><td data-label="Categoria"><span class="tag hid">Hidráulico</span></td><td data-label="Data">22/07/2026</td><td class="num" data-label="Qtd.">4</td><td class="num" data-label="Valor R$">15,50</td></tr>
             <tr><td>Engrenagem Z-15 – corrediça do guincho G1/G2</td><td data-label="Categoria"><span class="tag mec">Mecânico</span></td><td data-label="Data">20/07/2026</td><td class="num" data-label="Qtd.">1</td><td class="num" data-label="Valor R$">900,20</td></tr>
-            <tr class="total-row"><td>Total</td><td></td><td></td><td class="num" data-label="Qtd.">12</td><td class="num" data-label="Valor R$">4.336,69</td></tr>
+            <tr class="total-row"><td>Total de peças</td><td></td><td></td><td class="num" data-label="Qtd.">12</td><td class="num" data-label="Valor R$">4.336,69</td></tr>
           </tbody>
         </table>
       </section>
 
       <section class="block">
-        <h2><span class="h-badge">4</span>Distribuição de Custos</h2>
+        <h2><span class="h-badge">4</span>Horas Trabalhadas — Mão de Obra</h2>
+        <div class="callout">
+          <span class="ic">⏳</span>
+          <div>
+            <strong>Por que o serviço levou até 23/07:</strong> a engrenagem do guincho foi pedida na sexta-feira (17/07)
+            e só chegou na terça-feira (21/07) — a montagem ficou aguardando a peça nesse intervalo, o que empurrou a
+            conclusão para quinta-feira (23/07).
+          </div>
+        </div>
+        <table class="horas data-table">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Executor</th>
+              <th>Horário</th>
+              <th class="num">Tempo</th>
+              <th>Observação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>16/07 · Qui</td><td data-label="Executor">Kauan E. Marcondes</td><td data-label="Horário">07:45–13:00</td><td class="num" data-label="Tempo">3:45</td><td data-label="Observação">Trocar terminal de direção e fazer preenchimento</td></tr>
+            <tr><td>17/07 · Sex</td><td data-label="Executor">Kauan E. Marcondes</td><td data-label="Horário">07:40–09:30</td><td class="num" data-label="Tempo">1:50</td><td data-label="Observação">Trocar terminal de direção e barras — peça da engrenagem pedida</td></tr>
+            <tr><td>20/07 · Seg</td><td data-label="Executor">Kauan E. Marcondes</td><td data-label="Horário">07:30–18:00</td><td class="num" data-label="Tempo">9:00</td><td data-label="Observação">Revisão do guincho</td></tr>
+            <tr><td>21/07 · Ter</td><td data-label="Executor">Kauan E. Marcondes</td><td data-label="Horário">07:30–19:30</td><td class="num" data-label="Tempo">10:30</td><td data-label="Observação">Peça chegou — montar engrenagens do guincho</td></tr>
+            <tr><td>22/07 · Qua</td><td data-label="Executor">Thauan Fernandes</td><td data-label="Horário">08:00–16:00</td><td class="num" data-label="Tempo">6:30</td><td data-label="Observação">Montagem do guincho</td></tr>
+            <tr><td>23/07 · Qui</td><td data-label="Executor">Kauan E. Marcondes</td><td data-label="Horário">08:00–18:00</td><td class="num" data-label="Tempo">8:30</td><td data-label="Observação">Terminar revisão</td></tr>
+            <tr class="total-row"><td>Total</td><td></td><td></td><td class="num" data-label="Tempo">40:05</td><td></td></tr>
+          </tbody>
+        </table>
+        <div class="bars-wrap" style="margin-top:20px;">
+          <div class="bar-row"><div class="bar-lbl">21/07 · Ter</div><div class="bar-track"><div class="bar-fill labor" style="width:100%;"></div></div><div class="bar-val">10:30</div></div>
+          <div class="bar-row"><div class="bar-lbl">20/07 · Seg</div><div class="bar-track"><div class="bar-fill labor" style="width:85.7%;"></div></div><div class="bar-val">9:00</div></div>
+          <div class="bar-row"><div class="bar-lbl">23/07 · Qui</div><div class="bar-track"><div class="bar-fill labor" style="width:81%;"></div></div><div class="bar-val">8:30</div></div>
+          <div class="bar-row"><div class="bar-lbl">22/07 · Qua</div><div class="bar-track"><div class="bar-fill labor" style="width:61.9%;"></div></div><div class="bar-val">6:30</div></div>
+          <div class="bar-row"><div class="bar-lbl">16/07 · Qui</div><div class="bar-track"><div class="bar-fill labor" style="width:35.7%;"></div></div><div class="bar-val">3:45</div></div>
+          <div class="bar-row"><div class="bar-lbl">17/07 · Sex</div><div class="bar-track"><div class="bar-fill labor" style="width:17.5%;"></div></div><div class="bar-val">1:50</div></div>
+        </div>
+        <div class="labor-total">
+          <div class="lt-calc">
+            <span class="lt-tag">Cálculo demonstrativo — não somado ao custo de peças</span>
+            <strong>40h05min</strong> (40,08h) × <strong>R$ 180,00/h</strong>
+          </div>
+          <div class="lt-val">R$ 7.215,00</div>
+        </div>
+      </section>
+
+      <section class="block">
+        <h2><span class="h-badge">5</span>Distribuição de Custos — Peças</h2>
         <div class="chart-row">
           <div class="donut-wrap">
             <div class="donut" style="background: conic-gradient(var(--accent) 0% 56.7%, var(--blue) 56.7% 100%);">
@@ -318,7 +389,7 @@
       </section>
 
       <section class="block">
-        <h2><span class="h-badge">5</span>Análise de Prazo de Execução</h2>
+        <h2><span class="h-badge">6</span>Análise de Prazo de Execução</h2>
         <p class="txt" style="margin-bottom:18px;">
           A manutenção do LBM 04 durou <strong>7 dias corridos</strong> (16/07 a 23/07/2026), envolvendo 12 execuções em
           3 sistemas distintos (mecânico, hidráulico e elétrico), com peças adquiridas de 3 fornecedores diferentes,
@@ -356,7 +427,7 @@
       </section>
 
       <section class="block">
-        <h2><span class="h-badge">6</span>Resumo da Manutenção</h2>
+        <h2><span class="h-badge">7</span>Resumo da Manutenção</h2>
         <div class="resumo-grid">
           <div class="resumo-card c-green">
             <div class="n">3</div>
@@ -370,11 +441,15 @@
             <div class="n">12</div>
             <div class="l">🟢✔️ Total de execuções realizadas</div>
           </div>
+          <div class="resumo-card c-violet">
+            <div class="n">40:05</div>
+            <div class="l">⏱ Horas de mão de obra (demonstrativo)</div>
+          </div>
         </div>
       </section>
 
       <section class="block">
-        <h2><span class="h-badge">7</span>Conclusão</h2>
+        <h2><span class="h-badge">8</span>Conclusão</h2>
         <div class="conclusao">
           <span>🟢✔️</span>
           <p>Todas as pendências do Trator de Apoio LBM 04 foram concluídas com sucesso. Após os reparos, substituições de componentes, revisões e testes operacionais, o equipamento foi liberado para retorno às operações, estando em plenas condições de trabalho.</p>
