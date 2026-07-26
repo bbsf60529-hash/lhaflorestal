@@ -6,91 +6,110 @@
   <title>FM Manutenção</title>
   <style>
     :root {
-      --verde1:  #2d6a2d;
-      --verde2:  #4a9e3f;
-      --verde3:  #7dc95e;
-      --marrom1: #5c3010;
-      --marrom2: #7a4520;
-      --bg-claro:#f0f4ec;
-      --dark:    #1a2e1a;
-      --branco:  #ffffff;
+      --bg:        #0a0e17;
+      --surface:   #121a28;
+      --surface-2: #1a2436;
+      --surface-3: #212c42;
+      --border:    #263048;
+      --accent:    #f5a623;
+      --accent-2:  #ffc266;
+      --accent-deep:#c9790a;
+      --accent-dim:rgba(245,166,35,.14);
+      --blue:      #5b9bf5;
+      --blue-dim:  rgba(91,155,245,.14);
+      --green:     #34d178;
+      --green-dim: rgba(52,209,120,.14);
+      --text:      #f2f5fa;
+      --text-2:    #a4afc4;
+      --text-3:    #6b7690;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      color: #222;
-      background: var(--bg-claro);
+      font-family: -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
       padding: 40px 16px 80px;
+      font-variant-numeric: tabular-nums;
     }
     .sheet {
-      max-width: 860px;
+      max-width: 880px;
       margin: 0 auto;
-      background: #fff;
+      background: var(--surface);
       border-radius: 18px;
-      box-shadow: 0 12px 40px rgba(0,0,0,.10);
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
       overflow: hidden;
-      border: 1px solid #e2ead9;
+      border: 1px solid var(--border);
     }
     .head {
-      background: linear-gradient(135deg, var(--dark), var(--verde1));
-      color: #fff;
-      padding: 34px 40px;
+      background: linear-gradient(160deg, #0d1420, #161f30);
+      border-bottom: 3px solid var(--accent);
+      padding: 32px 40px 30px;
     }
     .head .brand { display:flex; align-items:center; gap:12px; margin-bottom:22px; }
     .brand-badge {
-      width: 40px; height: 40px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--verde2), var(--marrom2));
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent-2), var(--accent-deep));
       display:flex; align-items:center; justify-content:center;
-      font-weight:900; font-size:13px; letter-spacing:-.5px; border:2px solid rgba(255,255,255,.25);
+      font-weight:900; font-size:13px; letter-spacing:-.5px; color:#1a1000;
+      border:2px solid rgba(255,255,255,.15);
     }
-    .brand-name { font-size:13px; font-weight:800; letter-spacing:1px; text-transform:uppercase; color: var(--verde3); }
-    .head h1 { font-size: 22px; font-weight: 900; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 6px; }
-    .head .sub { font-size: 14px; color: rgba(255,255,255,.75); }
-    .periodo {
-      display:flex; gap:28px; margin-top:20px; flex-wrap:wrap;
-    }
-    .periodo .item {
-      background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18);
-      border-radius: 10px; padding: 10px 18px;
-    }
-    .periodo .item span { display:block; }
-    .periodo .lbl { font-size:10px; text-transform:uppercase; letter-spacing:1px; color: var(--verde3); font-weight:700; margin-bottom:2px; }
-    .periodo .val { font-size:15px; font-weight:700; }
+    .brand-name { font-size:13px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color: var(--accent); }
+    .head h1 { font-size: 22px; font-weight: 900; letter-spacing: .3px; text-transform: uppercase; margin-bottom: 8px; text-wrap: balance; }
+    .head .sub { font-size: 14px; color: var(--text-2); margin-bottom: 22px; }
 
-    .body-content { padding: 34px 40px 10px; }
-    section.block { margin-bottom: 32px; }
-    .block h2 {
-      font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
-      color: var(--verde1); padding-bottom: 10px; margin-bottom: 16px;
-      border-bottom: 2px solid var(--verde2);
+    .pill-row { display:flex; gap:10px; flex-wrap:wrap; }
+    .pill {
+      display:inline-flex; align-items:center; gap:6px;
+      background: var(--surface-2); border:1px solid var(--border);
+      border-radius: 50px; padding: 7px 16px;
+      font-size: 11.5px; font-weight:700; letter-spacing:.3px; text-transform:uppercase; color: var(--text-2);
     }
+    .pill.on { border-color: var(--accent); color: var(--accent); }
+    .pill.ok { border-color: var(--green); color: var(--green); }
+
+    .body-content { padding: 36px 40px 12px; }
+    section.block { margin-bottom: 34px; }
+    .block h2 {
+      display:flex; align-items:center; gap:12px;
+      font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px;
+      color: var(--text); padding-bottom: 12px; margin-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .h-badge {
+      flex-shrink:0; width:24px; height:24px; border-radius:7px;
+      background: var(--accent); color:#1a1000;
+      display:flex; align-items:center; justify-content:center;
+      font-size:12px; font-weight:900;
+    }
+
     ul.check-list { list-style: none; }
     ul.check-list li {
       display:flex; align-items:flex-start; gap:12px;
-      padding: 13px 0; border-bottom: 1px solid #eef2ea;
-      font-size: 17px; line-height:1.55; font-weight: 700; color: #1a1a1a;
+      padding: 13px 0; border-bottom: 1px solid var(--border);
+      font-size: 16.5px; line-height:1.55; font-weight: 700; color: var(--text);
     }
     ul.check-list li:last-child { border-bottom:none; }
     ul.check-list li > div { flex:1; min-width:0; }
     ul.check-list .mark { flex-shrink:0; font-size:19px; line-height:1.4; }
-    ul.check-list .num { font-weight:800; color: var(--verde1); margin-right:2px; }
+    ul.check-list .num { font-weight:800; color: var(--accent); margin-right:2px; }
 
     table.custos { width:100%; border-collapse: collapse; font-size: 13.5px; }
     table.custos th {
-      text-align:left; background: var(--bg-claro); color: var(--verde1);
-      font-size:11px; text-transform:uppercase; letter-spacing:.5px; font-weight:800;
-      padding: 10px 12px; border-bottom: 2px solid var(--verde2);
+      text-align:left; background: var(--surface-2); color: var(--accent);
+      font-size:11px; text-transform:uppercase; letter-spacing:.6px; font-weight:800;
+      padding: 11px 12px; border-bottom: 2px solid var(--accent);
     }
-    table.custos td { padding: 10px 12px; border-bottom: 1px solid #eef2ea; }
+    table.custos td { padding: 11px 12px; border-bottom: 1px solid var(--border); color: var(--text); }
     table.custos td.num, table.custos th.num { text-align:right; }
     table.custos tr.total-row td {
-      font-weight: 800; background: var(--bg-claro); color: var(--verde1); border-bottom:none;
+      font-weight: 800; background: var(--surface-2); color: var(--accent-2); border-bottom:none;
     }
     .tag {
       display:inline-block; font-size:11px; font-weight:700; padding:3px 10px; border-radius:50px;
+      border:1px solid transparent;
     }
-    .tag.mec { background: rgba(122,69,32,.12); color: var(--marrom2); }
-    .tag.hid { background: rgba(74,158,63,.14); color: var(--verde1); }
+    .tag.mec { background: var(--accent-dim); color: var(--accent-2); border-color: rgba(245,166,35,.35); }
+    .tag.hid { background: var(--blue-dim); color: var(--blue); border-color: rgba(91,155,245,.35); }
 
     .chart-row { display:flex; gap:36px; flex-wrap:wrap; align-items:center; }
     .donut-wrap { display:flex; flex-direction:column; align-items:center; gap:16px; flex-shrink:0; }
@@ -99,64 +118,72 @@
       display:flex; align-items:center; justify-content:center;
     }
     .donut-hole {
-      width: 112px; height: 112px; border-radius: 50%; background:#fff;
+      width: 112px; height: 112px; border-radius: 50%; background: var(--surface);
       display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
-      box-shadow: inset 0 0 0 1px #eef2ea;
+      box-shadow: inset 0 0 0 1px var(--border);
     }
-    .dh-val { font-size: 14px; font-weight:800; color: var(--verde1); }
-    .dh-lbl { font-size: 10px; color:#888; margin-top:2px; }
+    .dh-val { font-size: 14px; font-weight:800; color: var(--accent-2); }
+    .dh-lbl { font-size: 10px; color: var(--text-3); margin-top:2px; }
     .donut-legend { display:flex; flex-direction:column; gap:8px; }
-    .dl-item { display:flex; align-items:center; gap:8px; font-size:12.5px; color:#444; }
+    .dl-item { display:flex; align-items:center; gap:8px; font-size:12.5px; color: var(--text-2); }
     .sw { width:11px; height:11px; border-radius:3px; flex-shrink:0; }
     .bars-wrap { flex:1; min-width:260px; display:flex; flex-direction:column; gap:10px; }
     .bar-row { display:grid; grid-template-columns: 130px 1fr 62px; align-items:center; gap:10px; }
-    .bar-lbl { font-size:12px; color:#444; }
-    .bar-track { background: var(--bg-claro); border-radius:6px; height:14px; overflow:hidden; }
+    .bar-lbl { font-size:12px; color: var(--text-2); }
+    .bar-track { background: var(--surface-2); border-radius:6px; height:14px; overflow:hidden; }
     .bar-fill { height:100%; border-radius:6px; }
-    .bar-fill.mec { background: linear-gradient(90deg, var(--marrom2), var(--marrom1)); }
-    .bar-fill.hid { background: linear-gradient(90deg, var(--verde2), var(--verde1)); }
-    .bar-val { font-size:12px; font-weight:700; color:#333; text-align:right; }
+    .bar-fill.mec { background: linear-gradient(90deg, var(--accent-deep), var(--accent)); }
+    .bar-fill.hid { background: linear-gradient(90deg, #2f5fb0, var(--blue)); }
+    .bar-val { font-size:12px; font-weight:700; color: var(--text); text-align:right; }
 
     .prazo-compare { margin-top: 6px; }
-    .pc-track { position:relative; height:34px; background: var(--bg-claro); border-radius:8px; overflow:visible; }
-    .pc-zone { position:absolute; top:0; bottom:0; border-radius:8px; opacity:.35; }
-    .pc-zone.pc-simples { background: var(--verde3); }
-    .pc-zone.pc-multi { background: var(--marrom1); }
-    .pc-marker { position:absolute; top:-8px; bottom:-8px; width:3px; background: var(--verde1); }
+    .pc-track { position:relative; height:34px; background: var(--surface-2); border-radius:8px; overflow:visible; }
+    .pc-zone { position:absolute; top:0; bottom:0; border-radius:8px; opacity:.4; }
+    .pc-zone.pc-simples { background: var(--blue); }
+    .pc-zone.pc-multi { background: var(--accent); }
+    .pc-marker { position:absolute; top:-8px; bottom:-8px; width:3px; background: var(--accent-2); }
     .pc-marker-lbl {
       position:absolute; top:-26px; left:50%; transform:translateX(-50%);
-      background: var(--verde1); color:#fff; font-size:10.5px; font-weight:700;
+      background: var(--accent); color:#1a1000; font-size:10.5px; font-weight:800;
       padding:3px 9px; border-radius:50px; white-space:nowrap;
     }
-    .pc-axis { display:flex; justify-content:space-between; font-size:10px; color:#999; margin-top:6px; }
+    .pc-axis { display:flex; justify-content:space-between; font-size:10px; color: var(--text-3); margin-top:6px; }
     .pc-legend { margin-top:14px; display:flex; flex-direction:column; gap:6px; }
-    .pl-item { display:flex; align-items:center; gap:8px; font-size:12px; color:#444; }
+    .pl-item { display:flex; align-items:center; gap:8px; font-size:12px; color: var(--text-2); }
+
+    p.txt { font-size:14px; color: var(--text-2); line-height:1.7; }
+    p.txt strong { color: var(--text); }
+    p.src { font-size:11px; color: var(--text-3); margin-top:14px; line-height:1.6; }
+    p.src em { color: var(--text-2); font-style:normal; }
 
     .resumo-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:16px; }
     .resumo-card {
-      background: var(--bg-claro); border:1px solid #dde8d5; border-radius:14px;
+      background: var(--surface-2); border:1px solid var(--border); border-radius:14px;
       padding: 18px; text-align:center;
     }
-    .resumo-card .n { font-size:26px; font-weight:900; color: var(--verde1); }
-    .resumo-card .l { font-size:11.5px; color:#555; margin-top:4px; }
+    .resumo-card .n { font-size:28px; font-weight:900; }
+    .resumo-card.c-green .n { color: var(--green); }
+    .resumo-card.c-blue .n { color: var(--blue); }
+    .resumo-card.c-accent .n { color: var(--accent); }
+    .resumo-card .l { font-size:11.5px; color: var(--text-2); margin-top:4px; }
 
     .conclusao {
-      background: linear-gradient(135deg, rgba(74,158,63,.10), rgba(45,106,45,.06));
-      border: 1px solid rgba(74,158,63,.3); border-radius: 14px;
-      padding: 20px 24px; font-size: 14.5px; line-height:1.7; color:#264a26;
+      background: var(--green-dim);
+      border: 1px solid rgba(52,209,120,.35); border-radius: 14px;
+      padding: 20px 24px; font-size: 14.5px; line-height:1.7; color: var(--text);
       display:flex; gap:12px; align-items:flex-start;
     }
 
     .foot {
       padding: 24px 40px 32px; display:flex; justify-content:space-between; align-items:center;
-      flex-wrap:wrap; gap:12px; border-top: 1px solid #eef2ea;
+      flex-wrap:wrap; gap:12px; border-top: 1px solid var(--border);
     }
-    .foot p { font-size:11.5px; color:#888; }
+    .foot p { font-size:11.5px; color: var(--text-3); }
     .btn-print {
-      background: var(--verde2); color:#fff; border:none; padding:10px 20px;
-      border-radius:50px; font-size:13px; font-weight:700; cursor:pointer;
+      background: var(--accent); color:#1a1000; border:none; padding:10px 20px;
+      border-radius:50px; font-size:13px; font-weight:800; cursor:pointer;
     }
-    .btn-print:hover { background: var(--verde1); }
+    .btn-print:hover { background: var(--accent-2); }
 
     @media (max-width: 640px) {
       .body-content, .head, .foot { padding-left:22px; padding-right:22px; }
@@ -167,25 +194,25 @@
       table.custos thead { display:none; }
       table.custos, table.custos tbody, table.custos tr, table.custos td { display:block; width:100%; }
       table.custos tr {
-        border:1px solid #eef2ea; border-radius:12px; padding:12px 14px; margin-bottom:10px;
+        border:1px solid var(--border); border-radius:12px; padding:12px 14px; margin-bottom:10px;
       }
-      table.custos tr.total-row { border-color: var(--verde2); }
+      table.custos tr.total-row { border-color: var(--accent); }
       table.custos td {
         border-bottom:none !important; padding:5px 0;
         display:flex; align-items:center; justify-content:space-between; gap:10px;
       }
       table.custos td:first-child {
-        padding-top:0; font-weight:800; color:#1a1a1a; font-size:15px; display:block;
+        padding-top:0; font-weight:800; color: var(--text); font-size:15px; display:block;
       }
       table.custos td:not(:first-child)::before {
         content: attr(data-label);
-        font-size:10.5px; text-transform:uppercase; letter-spacing:.4px; color:#888; font-weight:700;
+        font-size:10.5px; text-transform:uppercase; letter-spacing:.4px; color: var(--text-3); font-weight:700;
       }
       table.custos td.num { text-align:right; font-size:14px; }
       table.custos td:empty { display:none; }
     }
     @media print {
-      body { background:#fff; padding:0; }
+      body { background:#fff; padding:0; color:#111; }
       .sheet { box-shadow:none; border:none; border-radius:0; max-width:100%; }
       .btn-print { display:none; }
     }
@@ -200,18 +227,18 @@
       </div>
       <h1>Relatório de Manutenção — Trator de Apoio LBM 04</h1>
       <div class="sub">Manutenção corretiva e preventiva do equipamento de apoio florestal</div>
-      <div class="periodo">
-        <div class="item"><span class="lbl">Início</span><span class="val">16/07/2026</span></div>
-        <div class="item"><span class="lbl">Conclusão</span><span class="val">23/07/2026</span></div>
-        <div class="item"><span class="lbl">Executado por</span><span class="val">FM Manutenção</span></div>
-        <div class="item"><span class="lbl">Status</span><span class="val">🟢✔️ Concluído</span></div>
+      <div class="pill-row">
+        <span class="pill on">🚜 Trator de apoio LBM 04</span>
+        <span class="pill">📅 16/07 – 23/07/2026</span>
+        <span class="pill">🔧 FM Manutenção</span>
+        <span class="pill ok">🟢✔️ Concluído</span>
       </div>
     </div>
 
     <div class="body-content">
 
       <section class="block">
-        <h2>Pendências Programadas</h2>
+        <h2><span class="h-badge">1</span>Pendências Programadas</h2>
         <ul class="check-list">
           <li><span class="mark">🟢✔️</span><div><span class="num">1.</span> Verificar cardan da tomada de força — Concluído.</div></li>
           <li><span class="mark">🟢✔️</span><div><span class="num">2.</span> Verificar e eliminar vazamento de óleo hidráulico — Concluído.</div></li>
@@ -220,7 +247,7 @@
       </section>
 
       <section class="block">
-        <h2>Serviços Executados</h2>
+        <h2><span class="h-badge">2</span>Serviços Executados</h2>
         <ul class="check-list">
           <li><span class="mark">🟢✔️</span><div><span class="num">4.</span> Lavagem completa do equipamento.</div></li>
           <li><span class="mark">🟢✔️</span><div><span class="num">5.</span> Troca do óleo do guincho.</div></li>
@@ -235,7 +262,7 @@
       </section>
 
       <section class="block">
-        <h2>Custos da Manutenção</h2>
+        <h2><span class="h-badge">3</span>Custos da Manutenção</h2>
         <table class="custos">
           <thead>
             <tr>
@@ -262,18 +289,18 @@
       </section>
 
       <section class="block">
-        <h2>Distribuição de Custos</h2>
+        <h2><span class="h-badge">4</span>Distribuição de Custos</h2>
         <div class="chart-row">
           <div class="donut-wrap">
-            <div class="donut" style="background: conic-gradient(var(--marrom2) 0% 56.7%, var(--verde2) 56.7% 100%);">
+            <div class="donut" style="background: conic-gradient(var(--accent) 0% 56.7%, var(--blue) 56.7% 100%);">
               <div class="donut-hole">
                 <span class="dh-val">R$ 4.336,69</span>
                 <span class="dh-lbl">Total geral</span>
               </div>
             </div>
             <div class="donut-legend">
-              <div class="dl-item"><span class="sw" style="background:var(--marrom2);"></span>Mecânico — R$ 2.458,70 (56,7%)</div>
-              <div class="dl-item"><span class="sw" style="background:var(--verde2);"></span>Hidráulico — R$ 1.877,99 (43,3%)</div>
+              <div class="dl-item"><span class="sw" style="background:var(--accent);"></span>Mecânico — R$ 2.458,70 (56,7%)</div>
+              <div class="dl-item"><span class="sw" style="background:var(--blue);"></span>Hidráulico — R$ 1.877,99 (43,3%)</div>
             </div>
           </div>
           <div class="bars-wrap">
@@ -291,8 +318,8 @@
       </section>
 
       <section class="block">
-        <h2>Análise de Prazo de Execução</h2>
-        <p style="font-size:14px;color:#444;line-height:1.7;margin-bottom:18px;">
+        <h2><span class="h-badge">5</span>Análise de Prazo de Execução</h2>
+        <p class="txt" style="margin-bottom:18px;">
           A manutenção do LBM 04 durou <strong>7 dias corridos</strong> (16/07 a 23/07/2026), envolvendo 12 execuções em
           3 sistemas distintos (mecânico, hidráulico e elétrico), com peças adquiridas de 3 fornecedores diferentes,
           em Guarapuava/PR e Caçador/SC. Não existe um índice público oficial de "dias médios" específico para tratores
@@ -309,16 +336,16 @@
             <span>0</span><span>2</span><span>4</span><span>6</span><span>8</span><span>10+ dias</span>
           </div>
           <div class="pc-legend">
-            <div class="pl-item"><span class="sw" style="background:var(--verde3);"></span>Reparo simples (1 sistema) — meta de mercado: até 3 dias</div>
-            <div class="pl-item"><span class="sw" style="background:var(--marrom1);"></span>Reparo multissistema c/ peças de fornecedores externos — faixa típica: 5 a 10 dias</div>
+            <div class="pl-item"><span class="sw" style="background:var(--blue);"></span>Reparo simples (1 sistema) — meta de mercado: até 3 dias</div>
+            <div class="pl-item"><span class="sw" style="background:var(--accent);"></span>Reparo multissistema c/ peças de fornecedores externos — faixa típica: 5 a 10 dias</div>
           </div>
         </div>
-        <p style="font-size:13.5px;color:#444;line-height:1.7;margin-top:16px;">
+        <p class="txt" style="margin-top:16px; font-size:13.5px;">
           Com 3 sistemas reparados e dependência de peças de 3 fornecedores em 2 estados, o LBM 04 se enquadra na
           categoria de reparo multissistema — e os <strong>7 dias ficaram dentro da faixa esperada (5 a 10 dias)</strong>,
           abaixo inclusive da mediana dessa faixa. Está dentro dos parâmetros do setor.
         </p>
-        <p style="font-size:11px;color:#999;margin-top:14px;line-height:1.6;">
+        <p class="src">
           Fontes: Transport Topics — <em>"24-Hour Repair Becomes the Standard"</em> (meta setorial de reparo rápido evoluindo
           de 3 dias para 24h em frotas pesadas); Hispatec — <em>Gestão de Maquinário Agrícola</em> (trator parado 3 dias em
           janela crítica já gera impacto agronômico relevante); MaintainX/Opsima — guias de MTTR (reparo ativo representa
@@ -329,17 +356,17 @@
       </section>
 
       <section class="block">
-        <h2>Resumo da Manutenção</h2>
+        <h2><span class="h-badge">6</span>Resumo da Manutenção</h2>
         <div class="resumo-grid">
-          <div class="resumo-card">
+          <div class="resumo-card c-green">
             <div class="n">3</div>
             <div class="l">🟢✔️ Pendências programadas concluídas</div>
           </div>
-          <div class="resumo-card">
+          <div class="resumo-card c-blue">
             <div class="n">9</div>
             <div class="l">🟢✔️ Serviços executados</div>
           </div>
-          <div class="resumo-card">
+          <div class="resumo-card c-accent">
             <div class="n">12</div>
             <div class="l">🟢✔️ Total de execuções realizadas</div>
           </div>
@@ -347,7 +374,7 @@
       </section>
 
       <section class="block">
-        <h2>Conclusão</h2>
+        <h2><span class="h-badge">7</span>Conclusão</h2>
         <div class="conclusao">
           <span>🟢✔️</span>
           <p>Todas as pendências do Trator de Apoio LBM 04 foram concluídas com sucesso. Após os reparos, substituições de componentes, revisões e testes operacionais, o equipamento foi liberado para retorno às operações, estando em plenas condições de trabalho.</p>
