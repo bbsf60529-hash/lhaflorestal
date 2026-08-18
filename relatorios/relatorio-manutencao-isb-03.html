@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Relatório de Manutenção · ISB 03</title>
+  <style>
+    :root {
+      --verde1:  #2d6a2d;
+      --verde2:  #4a9e3f;
+      --verde3:  #7dc95e;
+      --bg-claro:#f0f4ec;
+      --dark:    #1a2e1a;
+      --laranja: #c47a1e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg-claro); color: #222; padding: 24px 16px 60px; }
+    .wrap { max-width: 860px; margin: 0 auto; }
+    header {
+      background: linear-gradient(135deg, var(--dark), var(--verde1));
+      color: #fff; border-radius: 18px; padding: 32px 36px; margin-bottom: 28px;
+    }
+    header .empresa { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--verde3); margin-bottom: 8px; }
+    header h1 { font-size: 26px; font-weight: 900; line-height: 1.2; }
+    header .maquina { margin-top: 10px; font-size: 14px; color: rgba(255,255,255,.75); }
+    section {
+      background: #fff; border: 1px solid #dde8d5; border-radius: 18px;
+      padding: 28px 32px; margin-bottom: 24px;
+    }
+    section h2 {
+      font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+      padding-bottom: 10px; margin-bottom: 18px; border-bottom: 2px solid var(--verde2);
+      color: var(--verde1);
+    }
+    section.pendencias h2 { color: var(--laranja); border-bottom-color: var(--laranja); }
+    ol { padding-left: 24px; display: flex; flex-direction: column; gap: 12px; }
+    ol li { line-height: 1.6; font-size: 15px; }
+    .fotos table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .fotos td { padding: 10px 12px; border-bottom: 1px solid #e8e8e8; vertical-align: top; line-height: 1.5; }
+    .fotos tr:last-child td { border-bottom: none; }
+    .fotos td:first-child { font-weight: 700; color: var(--verde1); white-space: nowrap; width: 110px; }
+    .status {
+      display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .5px;
+      text-transform: uppercase; padding: 4px 12px; border-radius: 50px; margin-left: 8px;
+    }
+    .status.ok { background: #e3f2dc; color: var(--verde1); }
+    .status.pend { background: #f7e8d0; color: var(--laranja); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="empresa">FM Manutenções</div>
+      <h1>Relatório de Manutenção — ISB 03</h1>
+      <div class="maquina">Máquina: ISB 03 · Data: 18/08/2026</div>
+    </header>
+
+    <section>
+      <h2>Serviços Executados <span class="status ok">Concluído</span></h2>
+      <ol>
+        <li>Trocado o reparo do meio do comando.</li>
+        <li>Trocadas as guarnições de todas as mangueiras de saída do comando.</li>
+        <li>Trocada a guarnição dos copos superiores do comando.</li>
+        <li>Trocadas 3 mangueiras de pilotagem do comando.</li>
+        <li>Fixada a chapa de proteção dos cilindros do boom, que estava solta.</li>
+        <li>Montado o papel do escapamento na tampa do motor.</li>
+        <li>Arrumado o chapéu do escape.</li>
+        <li>Reparo dos copos do comando da máquina base.</li>
+        <li>Reparo da fiação e das bobinas que estavam soltas.</li>
+      </ol>
+    </section>
+
+    <section class="pendencias">
+      <h2>Pendências <span class="status pend">A Executar</span></h2>
+      <ol>
+        <li>Revisão do suivel (giro/swivel) dos motores da esteira.</li>
+        <li>Desentortar as proteções.</li>
+        <li>Revisão do conjunto de corte, se necessário.</li>
+      </ol>
+    </section>
+
+    <section class="fotos">
+      <h2>Registro Fotográfico</h2>
+      <table>
+        <tr><td>Foto 1</td><td>Chapéu do escape arrumado (cabine/tampa do motor).</td></tr>
+        <tr><td>Foto 2</td><td>Proteção do cilindro do levante.</td></tr>
+        <tr><td>Foto 3</td><td>Reparo dos copos do comando da máquina base.</td></tr>
+        <tr><td>Foto 4</td><td>Bobinas e fiação soltas (antes do reparo).</td></tr>
+        <tr><td>Foto 5</td><td>Depois do reparo dos fios das bobinas.</td></tr>
+      </table>
+    </section>
+  </div>
+</body>
+</html>
