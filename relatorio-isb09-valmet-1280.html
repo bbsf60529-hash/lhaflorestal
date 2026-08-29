@@ -132,6 +132,11 @@
     font-weight: 800; background: var(--surface-2); color: var(--accent-2); border-bottom:none;
   }
   .table-scroll { overflow-x: auto; }
+  .tag {
+    display:inline-block; font-size:11px; font-weight:700; padding:3px 10px; border-radius:50px;
+    border:1px solid transparent; white-space:nowrap;
+  }
+  .tag.pend { background: var(--accent-dim); color: var(--accent-2); border-color: rgba(245,166,35,.35); }
 
   .bars-wrap { display:flex; flex-direction:column; gap:10px; margin-top:20px; }
   .bar-row { display:grid; grid-template-columns: 150px 1fr 62px; align-items:center; gap:10px; }
@@ -227,6 +232,7 @@
       <span class="pill ok">🟢✔️ 13 serviços concluídos</span>
       <span class="pill">⏱ 29h40 de serviço</span>
       <span class="pill on">🟠⏳ 3 pendências</span>
+      <span class="pill on">🧾 Custo de materiais a lançar</span>
     </div>
   </div>
 
@@ -265,7 +271,27 @@
     </section>
 
     <section class="block">
-      <h2><span class="h-badge">3</span>Horas Trabalhadas — Mão de Obra</h2>
+      <h2><span class="h-badge">3</span>Materiais — Custo a Lançar</h2>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Material</th><th>Aplicação</th><th class="num">Qtd.</th><th class="num">Valor R$</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ferros / perfis metálicos</td><td data-label="Aplicação">Confecção da porta da cabine</td><td class="num" data-label="Qtd.">—</td><td class="num" data-label="Valor R$"><span class="tag pend">A lançar</span></td></tr>
+            <tr><td>Lexan</td><td data-label="Aplicação">Porta, dianteiro, lateral e traseiro</td><td class="num" data-label="Qtd.">—</td><td class="num" data-label="Valor R$"><span class="tag pend">A lançar</span></td></tr>
+            <tr class="total-row"><td>Total de materiais</td><td></td><td class="num"></td><td class="num" data-label="Valor R$">A apurar</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <span class="ic">🧾</span>
+        <div><strong>Pendência de lançamento:</strong> o custo dos ferros usados na confecção da porta e o dos Lexans ainda não foi lançado na OS 0000003848. Sem esse lançamento, o custo total da revisão do ISB 09 fica incompleto — levantar as notas com a oficina e lançar.</div>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2><span class="h-badge">4</span>Horas Trabalhadas — Mão de Obra</h2>
       <div class="os-info">
         <div><span>Ordem de serviço</span><strong>0000003848</strong></div>
         <div><span>ID do objeto</span><strong>ISB09</strong></div>
@@ -303,7 +329,7 @@
     </section>
 
     <section class="block">
-      <h2><span class="h-badge">4</span>Registro Fotográfico</h2>
+      <h2><span class="h-badge">5</span>Registro Fotográfico</h2>
       <div class="foto-grid">
         <figure class="foto-card">
           <img src="fotos/isb09/01-porta-lexan.jpg" alt="Porta nova da cabine com Lexan instalada">
@@ -339,7 +365,7 @@
     </section>
 
     <section class="block">
-      <h2><span class="h-badge">5</span>Resumo da Manutenção</h2>
+      <h2><span class="h-badge">6</span>Resumo da Manutenção</h2>
       <div class="resumo-grid">
         <div class="resumo-card c-green">
           <div class="n">13</div>
@@ -348,6 +374,10 @@
         <div class="resumo-card c-accent">
           <div class="n">3</div>
           <div class="l">🟠⏳ Pendências da gerência</div>
+        </div>
+        <div class="resumo-card c-accent">
+          <div class="n">2</div>
+          <div class="l">🧾 Materiais com custo a lançar</div>
         </div>
         <div class="resumo-card c-violet">
           <div class="n">29:40</div>
@@ -361,10 +391,10 @@
     </section>
 
     <section class="block">
-      <h2><span class="h-badge">6</span>Conclusão</h2>
+      <h2><span class="h-badge">7</span>Conclusão</h2>
       <div class="conclusao">
         <span>🟢✔️</span>
-        <div>O ISB 09 entrou na oficina em <strong>07/08</strong> e foi entregue em <strong>19/08/2026</strong>, com <strong>13 serviços concluídos</strong> em 29h40 de mão de obra: cabine fechada e envidraçada, porta nova com maçaneta, iluminação, freio de mão, alavanca de marcha, guincho e vazamento do cubo resolvidos, além da tampa do tanque que a máquina não tinha. Restam apenas <strong>3 itens para a gerência</strong> — extintor, recapagem dos pneus e cabo do guincho — todos dependentes de compra ou contratação.</div>
+        <div>O ISB 09 entrou na oficina em <strong>07/08</strong> e foi entregue em <strong>19/08/2026</strong>, com <strong>13 serviços concluídos</strong> em 29h40 de mão de obra: cabine fechada e envidraçada, porta nova com maçaneta, iluminação, freio de mão, alavanca de marcha, guincho e vazamento do cubo resolvidos, além da tampa do tanque que a máquina não tinha. Restam apenas <strong>3 itens para a gerência</strong> — extintor, recapagem dos pneus e cabo do guincho — todos dependentes de compra ou contratação. Falta ainda <strong>lançar na OS o custo dos ferros da porta e dos Lexans</strong>, para fechar o custo total da revisão.</div>
       </div>
     </section>
 
