@@ -218,10 +218,14 @@
     body { padding:0; }
     .sheet { box-shadow:none; border:none; border-radius:0; max-width:100%; }
     .btn-print { display:none; }
-    section.block { break-inside: avoid; }
-    ul.check-list li, .resumo-card, .conclusao, .callout, .foto-card, .bar-row, .os-info { break-inside: avoid; }
-    .head { break-after: avoid; }
-    .block h2 { break-after: avoid; }
+    .sheet { overflow: visible; }
+    section.block { break-inside: auto; }
+    ul.check-list li, .resumo-card, .conclusao, .callout, .foto-card, .bar-row, .os-info,
+    .nota-head, .data-table tr { break-inside: avoid; }
+    .head { break-inside: avoid; break-after: avoid; }
+    .block h2, .nota-head { break-after: avoid; }
+    table.data-table thead { display: table-header-group; }
+    .foto-grid { break-inside: auto; }
   }
 </style>
 </head>
