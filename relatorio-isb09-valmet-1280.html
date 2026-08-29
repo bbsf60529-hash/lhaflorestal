@@ -137,6 +137,16 @@
     border:1px solid transparent; white-space:nowrap;
   }
   .tag.pend { background: var(--accent-dim); color: var(--accent-2); border-color: rgba(245,166,35,.35); }
+  .tag.ved { background: var(--accent-dim); color: var(--accent-2); border-color: rgba(245,166,35,.35); }
+  .tag.pec { background: rgba(91,155,245,.14); color: var(--blue); border-color: rgba(91,155,245,.35); }
+  .nota-head {
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    font-size:12px; font-weight:800; letter-spacing:.4px; text-transform:uppercase;
+    color: var(--text-2); margin: 22px 0 10px;
+  }
+  .nota-head:first-child { margin-top:0; }
+  .nota-head .nid { color: var(--accent); }
+  .nota-head .ndate { color: var(--text-3); font-weight:700; }
 
   .bars-wrap { display:flex; flex-direction:column; gap:10px; margin-top:20px; }
   .bar-row { display:grid; grid-template-columns: 150px 1fr 62px; align-items:center; gap:10px; }
@@ -171,6 +181,7 @@
   }
   .resumo-card .n { font-size:28px; font-weight:900; }
   .resumo-card.c-violet .n { font-size:22px; color: #9b8bf4; }
+  .resumo-card.c-money .n { font-size:19px; color: var(--accent-2); }
   .resumo-card.c-green .n { color: var(--green); }
   .resumo-card.c-blue .n { color: var(--blue); }
   .resumo-card.c-accent .n { color: var(--accent); }
@@ -232,7 +243,8 @@
       <span class="pill ok">🟢✔️ 13 serviços concluídos</span>
       <span class="pill">⏱ 29h40 de serviço</span>
       <span class="pill on">🟠⏳ 3 pendências</span>
-      <span class="pill on">🧾 Custo de materiais a lançar</span>
+      <span class="pill">🧾 R$ 158,40 em peças</span>
+      <span class="pill on">🧾 Ferros e Lexans a lançar</span>
     </div>
   </div>
 
@@ -271,7 +283,58 @@
     </section>
 
     <section class="block">
-      <h2><span class="h-badge">3</span>Materiais — Custo a Lançar</h2>
+      <h2><span class="h-badge">3</span>Peças e Materiais Aplicados</h2>
+
+      <div class="nota-head"><span class="nid">Venda 881324</span> <span class="ndate">10/08/2026</span> · Parafusos Guarapuava · Requisição 0004412</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Item</th><th>Aplicação</th><th class="num">Qtd.</th><th class="num">Unit. R$</th><th class="num">Total R$</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>37461 — Anel elástico interno I-38</td><td data-label="Aplicação"><span class="tag ved">Vedação</span> Cubo de roda</td><td class="num" data-label="Qtd.">1</td><td class="num" data-label="Unit. R$">5,40</td><td class="num" data-label="Total R$">5,40</td></tr>
+            <tr class="total-row"><td>Subtotal da nota</td><td></td><td class="num" data-label="Qtd.">1</td><td></td><td class="num" data-label="Total R$">5,40</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="nota-head"><span class="nid">Condicional 87.362</span> <span class="ndate">13/08/2026</span> · Valforte Peças · OC 4433</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Item</th><th>Aplicação</th><th class="num">Qtd.</th><th class="num">Unit. R$</th><th class="num">Total R$</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>81644000 — Retentor do cubo Valmet (verde)</td><td data-label="Aplicação"><span class="tag ved">Vedação</span> Cubo de roda direito</td><td class="num" data-label="Qtd.">1</td><td class="num" data-label="Unit. R$">115,00</td><td class="num" data-label="Total R$">115,00</td></tr>
+            <tr class="total-row"><td>Subtotal da nota</td><td></td><td class="num" data-label="Qtd.">1</td><td></td><td class="num" data-label="Total R$">115,00</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="nota-head"><span class="nid">Condicional 87.516</span> <span class="ndate">24/08/2026</span> · Valforte Peças · Ordem de compra 004364</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Item</th><th>Aplicação</th><th class="num">Qtd.</th><th class="num">Unit. R$</th><th class="num">Total R$</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>KH4933 — Anel retentor do tanque</td><td data-label="Aplicação"><span class="tag ved">Vedação</span> Tanque de abastecimento</td><td class="num" data-label="Qtd.">1</td><td class="num" data-label="Unit. R$">1,00</td><td class="num" data-label="Total R$">1,00</td></tr>
+            <tr><td>584150 — Tampa do tanque</td><td data-label="Aplicação"><span class="tag pec">Peça</span> Tanque de abastecimento</td><td class="num" data-label="Qtd.">1</td><td class="num" data-label="Unit. R$">37,00</td><td class="num" data-label="Total R$">37,00</td></tr>
+            <tr class="total-row"><td>Subtotal da nota</td><td></td><td class="num" data-label="Qtd.">2</td><td></td><td class="num" data-label="Total R$">38,00</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="nota-head" style="margin-top:26px;">Total geral de peças</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <tbody>
+            <tr class="total-row"><td>3 notas · 4 peças aplicadas</td><td class="num">R$ 158,40</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="nota-head" style="margin-top:26px;">Materiais com custo a lançar</div>
       <div class="table-scroll">
         <table class="data-table">
           <thead>
@@ -280,13 +343,17 @@
           <tbody>
             <tr><td>Ferros / perfis metálicos</td><td data-label="Aplicação">Confecção da porta da cabine</td><td class="num" data-label="Qtd.">—</td><td class="num" data-label="Valor R$"><span class="tag pend">A lançar</span></td></tr>
             <tr><td>Lexan</td><td data-label="Aplicação">Porta, dianteiro, lateral e traseiro</td><td class="num" data-label="Qtd.">—</td><td class="num" data-label="Valor R$"><span class="tag pend">A lançar</span></td></tr>
-            <tr class="total-row"><td>Total de materiais</td><td></td><td class="num"></td><td class="num" data-label="Valor R$">A apurar</td></tr>
           </tbody>
         </table>
       </div>
+
       <div class="callout">
         <span class="ic">🧾</span>
-        <div><strong>Pendência de lançamento:</strong> o custo dos ferros usados na confecção da porta e o dos Lexans ainda não foi lançado na OS 0000003848. Sem esse lançamento, o custo total da revisão do ISB 09 fica incompleto — levantar as notas com a oficina e lançar.</div>
+        <div><strong>Pendência de lançamento:</strong> o custo dos ferros usados na confecção da porta e o dos Lexans ainda não foi lançado na OS 0000003848. Com as notas já lançadas, as peças somam <strong>R$ 158,40</strong> — o custo total da revisão só fecha depois desses dois lançamentos.</div>
+      </div>
+      <div class="callout info">
+        <span class="ic">📌</span>
+        <div>Cliente das notas: <strong>Isbra Florestal</strong>. As duas condicionais da Valforte trazem a identificação <strong>ISB 09</strong>; a venda 881324 (anel elástico I-38) veio sem a identificação da máquina na nota — conferir no lançamento.</div>
       </div>
     </section>
 
@@ -375,9 +442,13 @@
           <div class="n">3</div>
           <div class="l">🟠⏳ Pendências da gerência</div>
         </div>
+        <div class="resumo-card c-money">
+          <div class="n">R$ 158,40</div>
+          <div class="l">🧾 Peças aplicadas (3 notas)</div>
+        </div>
         <div class="resumo-card c-accent">
           <div class="n">2</div>
-          <div class="l">🧾 Materiais com custo a lançar</div>
+          <div class="l">🧾 Materiais a lançar</div>
         </div>
         <div class="resumo-card c-violet">
           <div class="n">29:40</div>
@@ -394,7 +465,7 @@
       <h2><span class="h-badge">7</span>Conclusão</h2>
       <div class="conclusao">
         <span>🟢✔️</span>
-        <div>O ISB 09 entrou na oficina em <strong>07/08</strong> e foi entregue em <strong>19/08/2026</strong>, com <strong>13 serviços concluídos</strong> em 29h40 de mão de obra: cabine fechada e envidraçada, porta nova com maçaneta, iluminação, freio de mão, alavanca de marcha, guincho e vazamento do cubo resolvidos, além da tampa do tanque que a máquina não tinha. Restam apenas <strong>3 itens para a gerência</strong> — extintor, recapagem dos pneus e cabo do guincho — todos dependentes de compra ou contratação. Falta ainda <strong>lançar na OS o custo dos ferros da porta e dos Lexans</strong>, para fechar o custo total da revisão.</div>
+        <div>O ISB 09 entrou na oficina em <strong>07/08</strong> e foi entregue em <strong>19/08/2026</strong>, com <strong>13 serviços concluídos</strong> em 29h40 de mão de obra: cabine fechada e envidraçada, porta nova com maçaneta, iluminação, freio de mão, alavanca de marcha, guincho e vazamento do cubo resolvidos, além da tampa do tanque que a máquina não tinha. Restam apenas <strong>3 itens para a gerência</strong> — extintor, recapagem dos pneus e cabo do guincho — todos dependentes de compra ou contratação. Em peças, as notas lançadas somam <strong>R$ 158,40</strong>; falta ainda <strong>lançar o custo dos ferros da porta e dos Lexans</strong> para fechar o custo total da revisão.</div>
       </div>
     </section>
 
