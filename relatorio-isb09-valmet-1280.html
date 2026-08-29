@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<style>*{margin:0;padding:0}img{max-width:100%}</style>
+<title>Ordem de Serviço ISB09</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --ground:#f2f2ec;
+    --surface:#ffffff;
+    --surface-2:#e9ebe2;
+    --ink:#1b241d;
+    --ink-2:#4e5a51;
+    --ink-3:#7c887f;
+    --rule:#d5d8cc;
+    --accent:#2f6b3a;
+    --accent-soft:#e2eddf;
+    --ok:#3d7f4a;
+    --ok-soft:#e2eddf;
+    --wait:#a56a12;
+    --wait-soft:#f6ecd7;
+    --hold:#5b6b8a;
+    --hold-soft:#e6eaf1;
+    --shadow:0 1px 2px rgba(27,36,29,.06), 0 8px 24px -18px rgba(27,36,29,.5);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#141815;
+      --surface:#1c211d;
+      --surface-2:#232a25;
+      --ink:#e8ece7;
+      --ink-2:#aab4ac;
+      --ink-3:#7f8b83;
+      --rule:#2f382f;
+      --accent:#79b968;
+      --accent-soft:#233021;
+      --ok:#79b968;
+      --ok-soft:#233021;
+      --wait:#d9a648;
+      --wait-soft:#332a17;
+      --hold:#95a6c4;
+      --hold-soft:#212734;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.9);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#141815;
+    --surface:#1c211d;
+    --surface-2:#232a25;
+    --ink:#e8ece7;
+    --ink-2:#aab4ac;
+    --ink-3:#7f8b83;
+    --rule:#2f382f;
+    --accent:#79b968;
+    --accent-soft:#233021;
+    --ok:#79b968;
+    --ok-soft:#233021;
+    --wait:#d9a648;
+    --wait-soft:#332a17;
+    --hold:#95a6c4;
+    --hold-soft:#212734;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.9);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:"IBM Plex Sans",-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:940px;margin:0 auto;padding:32px 20px 64px;display:flex;flex-direction:column;gap:34px;}
+
+  /* ── Cabeçalho ── */
+  header{display:flex;flex-direction:column;gap:18px;}
+  .eyebrow{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+  }
+  h1{
+    font-family:"Barlow Condensed","IBM Plex Sans",Arial,sans-serif;
+    font-size:clamp(38px,7vw,62px);font-weight:700;line-height:.96;
+    letter-spacing:-.005em;text-transform:uppercase;text-wrap:balance;margin:0;
+  }
+  h1 .maq{color:var(--accent);}
+  .sub{color:var(--ink-2);max-width:62ch;font-size:15px;}
+
+  .ficha{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:6px;overflow:hidden;
+  }
+  .ficha div{background:var(--surface);padding:12px 14px;display:flex;flex-direction:column;gap:3px;}
+  .ficha dt{font-size:10.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);}
+  .ficha dd{margin:0;font-family:"IBM Plex Mono",monospace;font-size:17px;font-weight:600;font-variant-numeric:tabular-nums;}
+
+  /* ── Placar ── */
+  .placar{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;}
+  .kpi{
+    background:var(--surface);border:1px solid var(--rule);border-radius:6px;
+    padding:16px 16px 14px;box-shadow:var(--shadow);
+    display:flex;flex-direction:column;gap:2px;border-top:3px solid var(--ink-3);
+  }
+  .kpi.ok{border-top-color:var(--ok);}
+  .kpi.wait{border-top-color:var(--wait);}
+  .kpi.hold{border-top-color:var(--hold);}
+  .kpi b{font-family:"Barlow Condensed",Arial,sans-serif;font-size:44px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;}
+  .kpi.ok b{color:var(--ok);}
+  .kpi.wait b{color:var(--wait);}
+  .kpi.hold b{color:var(--hold);}
+  .kpi span{font-size:11px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);}
+  .kpi small{font-size:13px;color:var(--ink-2);}
+
+  .barra{display:flex;height:10px;border-radius:5px;overflow:hidden;border:1px solid var(--rule);background:var(--surface);}
+  .barra i{display:block;}
+  .barra .b-ok{background:var(--ok);flex:10;}
+  .barra .b-wait{background:var(--wait);flex:3;}
+  .barra .b-hold{background:var(--hold);flex:1;}
+  .legenda{display:flex;flex-wrap:wrap;gap:16px;font-size:12px;color:var(--ink-2);margin-top:8px;}
+  .legenda span{display:flex;align-items:center;gap:6px;}
+  .dot{width:9px;height:9px;border-radius:2px;display:inline-block;}
+
+  /* ── Seções ── */
+  section{display:flex;flex-direction:column;gap:14px;}
+  h2{
+    font-family:"Barlow Condensed",Arial,sans-serif;font-size:26px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.02em;margin:0;
+    display:flex;align-items:baseline;gap:12px;
+  }
+  h2::after{content:"";flex:1;height:1px;background:var(--rule);}
+  h2 .cont{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--ink-3);letter-spacing:.08em;}
+  .nota{font-size:14px;color:var(--ink-2);max-width:70ch;}
+
+  ol.servicos{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:6px;overflow:hidden;}
+  ol.servicos li{
+    background:var(--surface);display:grid;
+    grid-template-columns:44px 1fr auto;align-items:start;gap:14px;padding:13px 16px;
+  }
+  .num{
+    font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;
+    color:var(--ink-3);padding-top:2px;font-variant-numeric:tabular-nums;
+  }
+  .serv-txt{display:flex;flex-direction:column;gap:2px;}
+  .serv-txt strong{font-weight:600;font-size:15.5px;}
+  .serv-txt em{font-style:normal;font-size:13px;color:var(--ink-3);}
+  .tag{
+    font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    padding:4px 9px;border-radius:3px;white-space:nowrap;margin-top:2px;
+  }
+  .tag.ok{background:var(--ok-soft);color:var(--ok);}
+  .tag.wait{background:var(--wait-soft);color:var(--wait);}
+  .tag.hold{background:var(--hold-soft);color:var(--hold);}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
+  .card{
+    background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--wait);
+    border-radius:6px;padding:15px 16px;display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow);
+  }
+  .card.hold{border-left-color:var(--hold);}
+  .card h3{font-size:16px;font-weight:700;margin:0;}
+  .card p{margin:0;font-size:13.5px;color:var(--ink-2);}
+  .card .orig{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3);letter-spacing:.04em;}
+
+  .anexo{
+    background:var(--surface-2);border:1px dashed var(--rule);border-radius:6px;
+    padding:14px 16px;display:flex;flex-direction:column;gap:4px;
+  }
+  .anexo b{font-size:14px;}
+  .anexo span{font-size:13px;color:var(--ink-2);}
+
+  footer{
+    border-top:1px solid var(--rule);padding-top:16px;
+    display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between;
+    font-size:12px;color:var(--ink-3);
+  }
+  footer b{color:var(--ink-2);font-weight:600;}
+
+  @media (max-width:520px){
+    ol.servicos li{grid-template-columns:34px 1fr;}
+    ol.servicos li .tag{grid-column:2;justify-self:start;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">  <header>
+    <div>
+      <p class="eyebrow">LHA Florestal &amp; Biomassa · Manutenção de frota</p>
+      <h1>Trator Valmet 1280 <span class="maq">ISB09</span></h1>
+    </div>
+    <p class="sub">Relatório de execução das pendências levantadas na inspeção da máquina. Dez serviços concluídos em oficina; três itens seguem para decisão da gerência.</p>
+
+    <dl class="ficha">
+      <div><dt>Máquina</dt><dd>ISB09</dd></div>
+      <div><dt>Modelo</dt><dd>Valmet 1280</dd></div>
+      <div><dt>Horímetro</dt><dd>1156</dd></div>
+      <div><dt>Data</dt><dd>29/08/2026</dd></div>
+    </dl>
+  </header>
+
+  <section>
+    <div class="placar">
+      <div class="kpi ok"><b>10</b><span>Concluídos</span><small>Executados em oficina</small></div>
+      <div class="kpi wait"><b>3</b><span>Pendentes</span><small>Gerência resolve</small></div>
+      <div class="kpi hold"><b>1</b><span>A confirmar</span><small>Status não informado</small></div>
+    </div>
+    <div>
+      <div class="barra" role="img" aria-label="10 serviços concluídos, 3 pendentes e 1 a confirmar">
+        <i class="b-ok"></i><i class="b-wait"></i><i class="b-hold"></i>
+      </div>
+      <div class="legenda">
+        <span><i class="dot" style="background:var(--ok)"></i> Concluído</span>
+        <span><i class="dot" style="background:var(--wait)"></i> Pendente — gerência</span>
+        <span><i class="dot" style="background:var(--hold)"></i> A confirmar</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Serviços executados <span class="cont">10 itens</span></h2>
+    <p class="nota">Numeração conforme o relatório de oficina; entre parênteses, o relato original da planilha de inspeção.</p>
+    <ol class="servicos">
+      <li><span class="num">01</span><span class="serv-txt"><strong>Vazamento do cubo direito corrigido</strong><em>Retentor trocado · relato: “Vazamento cubo direito”</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">02</span><span class="serv-txt"><strong>Porta fabricada e instalada com Lexan</strong><em>Relato: “Sem porta”</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">03</span><span class="serv-txt"><strong>Lexan dianteiro, lateral e traseiro trocados</strong><em>Serviço adicional de vidraçaria da cabine</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">04</span><span class="serv-txt"><strong>Freio de mão arrumado</strong><em>Relato: “Sem freio de mão”</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">05</span><span class="serv-txt"><strong>Parafusos da tampa do guincho recolocados</strong><em>Relato: “Parafusos da tampa do guincho”</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">06</span><span class="serv-txt"><strong>Força do guincho corrigida</strong><em>Relato: “Guincho sem força”</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">07</span><span class="serv-txt"><strong>Banco recuperado</strong><em>Relato: “Banco quebrado”</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">08</span><span class="serv-txt"><strong>Cabine recuperada</strong><em>Relato: “Cabine quebrada”</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">09</span><span class="serv-txt"><strong>Iluminação arrumada</strong><em>Relato: “Sem iluminação”</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">10</span><span class="serv-txt"><strong>Proteção do guincho instalada</strong><em>Relato: “Sem proteção no guincho”</em></span><span class="tag ok">Concluído</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Pendências — gerência resolve <span class="cont">3 itens</span></h2>
+    <div class="cards">
+      <div class="card">
+        <p class="orig">RELATO 03</p>
+        <h3>Extintor sem carga</h3>
+        <p>Necessária recarga ou substituição do extintor. Item de segurança — bloqueia liberação plena da máquina.</p>
+      </div>
+      <div class="card">
+        <p class="orig">RELATO 12</p>
+        <h3>Pneus precisam recapar</h3>
+        <p>Recapagem a contratar. Depende de aprovação de compra/serviço externo.</p>
+      </div>
+      <div class="card">
+        <p class="orig">RELATO 13</p>
+        <h3>Cabo do guincho curto</h3>
+        <p>Cabo continua no mesmo comprimento. Substituição por cabo maior depende de aquisição.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>A confirmar <span class="cont">1 item</span></h2>
+    <div class="cards">
+      <div class="card hold">
+        <p class="orig">RELATO 02</p>
+        <h3>Alavanca de marcha</h3>
+        <p>Consta na inspeção, mas não foi informada no relatório da oficina. Confirmar se foi corrigida ou se entra na lista de pendências.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Registro fotográfico</h2>
+    <div class="anexo">
+      <b>Foto 01 — Porta nova instalada com Lexan</b>
+      <span>Registro enviado junto ao relatório (29/08/2026), mostrando a porta fabricada em oficina, com Lexan e fechadura montados no lado esquerdo da cabine.</span>
+    </div>
+  </section>
+
+  <footer>
+    <span>Máquina <b>ISB09</b> · Valmet 1280 · Horímetro <b>1156</b></span>
+    <span>Relatório de oficina — <b>29/08/2026</b></span>
+  </footer>
+
+</div>
+</body>
+</html>
