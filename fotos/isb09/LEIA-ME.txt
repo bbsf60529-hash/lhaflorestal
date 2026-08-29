@@ -1,0 +1,13 @@
+Fotos do relatorio da OS 0000003848 - Trator Valmet 1280 (ISB09).
+
+A pagina relatorio-isb09-valmet-1280.html procura os arquivos abaixo.
+Enquanto a foto nao estiver aqui, a pagina mostra um espaco reservado
+com o nome esperado do arquivo.
+
+01-porta-lexan.jpeg                 Porta nova com Lexan instalada
+02-macaneta.jpeg                    Macaneta e travamento da porta
+03-lexan-dianteiro-iluminacao.jpeg  Lexan dianteiro trocado + farois de trabalho
+04-lexan-traseiro.jpeg              Lexan traseiro e lateral trocados
+05-tampa-tanque.jpeg                Tampa do tanque de abastecimento colocada
+
+Basta salvar as fotos com exatamente esses nomes nesta pasta.

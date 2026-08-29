@@ -11,115 +11,69 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
 <style>
   :root{
-    --ground:#f2f2ec;
-    --surface:#ffffff;
-    --surface-2:#e9ebe2;
-    --ink:#1b241d;
-    --ink-2:#4e5a51;
-    --ink-3:#7c887f;
-    --rule:#d5d8cc;
-    --accent:#2f6b3a;
-    --accent-soft:#e2eddf;
-    --ok:#3d7f4a;
-    --ok-soft:#e2eddf;
-    --wait:#a56a12;
-    --wait-soft:#f6ecd7;
-    --hold:#5b6b8a;
-    --hold-soft:#e6eaf1;
+    --ground:#f2f2ec; --surface:#ffffff; --surface-2:#e9ebe2;
+    --ink:#1b241d; --ink-2:#4e5a51; --ink-3:#7c887f; --rule:#d5d8cc;
+    --accent:#2f6b3a; --accent-soft:#e2eddf;
+    --ok:#3d7f4a; --ok-soft:#e2eddf;
+    --wait:#a56a12; --wait-soft:#f6ecd7;
+    --hold:#5b6b8a; --hold-soft:#e6eaf1;
+    --track:#e4e7dd;
     --shadow:0 1px 2px rgba(27,36,29,.06), 0 8px 24px -18px rgba(27,36,29,.5);
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --ground:#141815;
-      --surface:#1c211d;
-      --surface-2:#232a25;
-      --ink:#e8ece7;
-      --ink-2:#aab4ac;
-      --ink-3:#7f8b83;
-      --rule:#2f382f;
-      --accent:#79b968;
-      --accent-soft:#233021;
-      --ok:#79b968;
-      --ok-soft:#233021;
-      --wait:#d9a648;
-      --wait-soft:#332a17;
-      --hold:#95a6c4;
-      --hold-soft:#212734;
+      --ground:#141815; --surface:#1c211d; --surface-2:#232a25;
+      --ink:#e8ece7; --ink-2:#aab4ac; --ink-3:#7f8b83; --rule:#2f382f;
+      --accent:#79b968; --accent-soft:#233021;
+      --ok:#79b968; --ok-soft:#233021;
+      --wait:#d9a648; --wait-soft:#332a17;
+      --hold:#95a6c4; --hold-soft:#212734;
+      --track:#2b332c;
       --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.9);
     }
   }
   :root[data-theme="dark"]{
-    --ground:#141815;
-    --surface:#1c211d;
-    --surface-2:#232a25;
-    --ink:#e8ece7;
-    --ink-2:#aab4ac;
-    --ink-3:#7f8b83;
-    --rule:#2f382f;
-    --accent:#79b968;
-    --accent-soft:#233021;
-    --ok:#79b968;
-    --ok-soft:#233021;
-    --wait:#d9a648;
-    --wait-soft:#332a17;
-    --hold:#95a6c4;
-    --hold-soft:#212734;
+    --ground:#141815; --surface:#1c211d; --surface-2:#232a25;
+    --ink:#e8ece7; --ink-2:#aab4ac; --ink-3:#7f8b83; --rule:#2f382f;
+    --accent:#79b968; --accent-soft:#233021;
+    --ok:#79b968; --ok-soft:#233021;
+    --wait:#d9a648; --wait-soft:#332a17;
+    --hold:#95a6c4; --hold-soft:#212734;
+    --track:#2b332c;
     --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.9);
   }
 
   *{box-sizing:border-box;}
+  [hidden]{display:none !important;}
   body{
-    background:var(--ground);
-    color:var(--ink);
+    background:var(--ground); color:var(--ink);
     font-family:"IBM Plex Sans",-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    font-size:16px;
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
+    font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:940px;margin:0 auto;padding:32px 20px 64px;display:flex;flex-direction:column;gap:34px;}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 20px 64px;display:flex;flex-direction:column;gap:36px;}
 
   /* ── Cabeçalho ── */
   header{display:flex;flex-direction:column;gap:18px;}
-  .eyebrow{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
-    font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
-  }
-  h1{
-    font-family:"Barlow Condensed","IBM Plex Sans",Arial,sans-serif;
-    font-size:clamp(38px,7vw,62px);font-weight:700;line-height:.96;
-    letter-spacing:-.005em;text-transform:uppercase;text-wrap:balance;margin:0;
-  }
+  .eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);}
+  h1{font-family:"Barlow Condensed","IBM Plex Sans",Arial,sans-serif;font-size:clamp(38px,7vw,62px);font-weight:700;line-height:.96;text-transform:uppercase;text-wrap:balance;margin:0;}
   h1 .maq{color:var(--accent);}
-  .sub{color:var(--ink-2);max-width:62ch;font-size:15px;}
-
-  .ficha{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-    gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:6px;overflow:hidden;
-  }
+  .sub{color:var(--ink-2);max-width:64ch;font-size:15px;}
+  .ficha{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:6px;overflow:hidden;}
   .ficha div{background:var(--surface);padding:12px 14px;display:flex;flex-direction:column;gap:3px;}
   .ficha dt{font-size:10.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);}
-  .ficha dd{margin:0;font-family:"IBM Plex Mono",monospace;font-size:17px;font-weight:600;font-variant-numeric:tabular-nums;}
+  .ficha dd{margin:0;font-family:"IBM Plex Mono",monospace;font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;}
 
   /* ── Placar ── */
-  .placar{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;}
-  .kpi{
-    background:var(--surface);border:1px solid var(--rule);border-radius:6px;
-    padding:16px 16px 14px;box-shadow:var(--shadow);
-    display:flex;flex-direction:column;gap:2px;border-top:3px solid var(--ink-3);
-  }
-  .kpi.ok{border-top-color:var(--ok);}
-  .kpi.wait{border-top-color:var(--wait);}
-  .kpi.hold{border-top-color:var(--hold);}
+  .placar{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;}
+  .kpi{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:2px;border-top:3px solid var(--ink-3);}
+  .kpi.ok{border-top-color:var(--ok);} .kpi.wait{border-top-color:var(--wait);} .kpi.hold{border-top-color:var(--hold);}
   .kpi b{font-family:"Barlow Condensed",Arial,sans-serif;font-size:44px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;}
-  .kpi.ok b{color:var(--ok);}
-  .kpi.wait b{color:var(--wait);}
-  .kpi.hold b{color:var(--hold);}
+  .kpi.ok b{color:var(--ok);} .kpi.wait b{color:var(--wait);} .kpi.hold b{color:var(--hold);}
   .kpi span{font-size:11px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);}
   .kpi small{font-size:13px;color:var(--ink-2);}
-
-  .barra{display:flex;height:10px;border-radius:5px;overflow:hidden;border:1px solid var(--rule);background:var(--surface);}
+  .barra{display:flex;height:10px;border-radius:5px;overflow:hidden;border:1px solid var(--rule);background:var(--surface);gap:2px;}
   .barra i{display:block;}
-  .barra .b-ok{background:var(--ok);flex:10;}
+  .barra .b-ok{background:var(--ok);flex:12;}
   .barra .b-wait{background:var(--wait);flex:3;}
   .barra .b-hold{background:var(--hold);flex:1;}
   .legenda{display:flex;flex-wrap:wrap;gap:16px;font-size:12px;color:var(--ink-2);margin-top:8px;}
@@ -128,57 +82,55 @@
 
   /* ── Seções ── */
   section{display:flex;flex-direction:column;gap:14px;}
-  h2{
-    font-family:"Barlow Condensed",Arial,sans-serif;font-size:26px;font-weight:700;
-    text-transform:uppercase;letter-spacing:.02em;margin:0;
-    display:flex;align-items:baseline;gap:12px;
-  }
+  h2{font-family:"Barlow Condensed",Arial,sans-serif;font-size:26px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;margin:0;display:flex;align-items:baseline;gap:12px;}
   h2::after{content:"";flex:1;height:1px;background:var(--rule);}
   h2 .cont{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--ink-3);letter-spacing:.08em;}
-  .nota{font-size:14px;color:var(--ink-2);max-width:70ch;}
+  .nota{font-size:14px;color:var(--ink-2);max-width:72ch;}
 
   ol.servicos{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:6px;overflow:hidden;}
-  ol.servicos li{
-    background:var(--surface);display:grid;
-    grid-template-columns:44px 1fr auto;align-items:start;gap:14px;padding:13px 16px;
-  }
-  .num{
-    font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;
-    color:var(--ink-3);padding-top:2px;font-variant-numeric:tabular-nums;
-  }
+  ol.servicos li{background:var(--surface);display:grid;grid-template-columns:44px 1fr auto;align-items:start;gap:14px;padding:13px 16px;}
+  .num{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--ink-3);padding-top:2px;font-variant-numeric:tabular-nums;}
   .serv-txt{display:flex;flex-direction:column;gap:2px;}
   .serv-txt strong{font-weight:600;font-size:15.5px;}
   .serv-txt em{font-style:normal;font-size:13px;color:var(--ink-3);}
-  .tag{
-    font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-    padding:4px 9px;border-radius:3px;white-space:nowrap;margin-top:2px;
-  }
+  .tag{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:3px;white-space:nowrap;margin-top:2px;}
   .tag.ok{background:var(--ok-soft);color:var(--ok);}
   .tag.wait{background:var(--wait-soft);color:var(--wait);}
   .tag.hold{background:var(--hold-soft);color:var(--hold);}
 
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
-  .card{
-    background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--wait);
-    border-radius:6px;padding:15px 16px;display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow);
-  }
+  .card{background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--wait);border-radius:6px;padding:15px 16px;display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow);}
   .card.hold{border-left-color:var(--hold);}
   .card h3{font-size:16px;font-weight:700;margin:0;}
   .card p{margin:0;font-size:13.5px;color:var(--ink-2);}
   .card .orig{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3);letter-spacing:.04em;}
 
-  .anexo{
-    background:var(--surface-2);border:1px dashed var(--rule);border-radius:6px;
-    padding:14px 16px;display:flex;flex-direction:column;gap:4px;
-  }
-  .anexo b{font-size:14px;}
-  .anexo span{font-size:13px;color:var(--ink-2);}
+  /* ── Horas ── */
+  .horas-topo{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;}
+  .tabela-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:6px;background:var(--surface);}
+  table.horas{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.horas th{text-align:left;font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:11px 14px;border-bottom:1px solid var(--rule);white-space:nowrap;}
+  table.horas td{padding:11px 14px;border-bottom:1px solid var(--rule);font-variant-numeric:tabular-nums;}
+  table.horas tr:last-child td{border-bottom:none;}
+  table.horas .mono{font-family:"IBM Plex Mono",monospace;}
+  .dur{display:flex;align-items:center;gap:10px;min-width:210px;}
+  .track{flex:1;height:8px;background:var(--track);border-radius:4px;overflow:hidden;}
+  .fill{display:block;height:100%;background:var(--accent);border-radius:0 4px 4px 0;}
+  .dur b{font-family:"IBM Plex Mono",monospace;font-size:13.5px;font-weight:600;min-width:56px;text-align:right;}
+  tfoot td{font-weight:700;background:var(--surface-2);}
 
-  footer{
-    border-top:1px solid var(--rule);padding-top:16px;
-    display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between;
-    font-size:12px;color:var(--ink-3);
-  }
+  /* ── Galeria ── */
+  .galeria{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;}
+  figure{margin:0;background:var(--surface);border:1px solid var(--rule);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow);}
+  figure img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;background:var(--surface-2);}
+  .ph{aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:16px;background:var(--surface-2);border-bottom:1px dashed var(--rule);color:var(--ink-3);font-size:12px;}
+  .ph .cam{font-size:22px;}
+  .ph code{font-family:"IBM Plex Mono",monospace;font-size:10.5px;word-break:break-all;color:var(--ink-2);}
+  figcaption{padding:11px 13px;display:flex;flex-direction:column;gap:3px;font-size:13px;}
+  figcaption b{font-size:11px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);}
+  figcaption span{color:var(--ink-2);}
+
+  footer{border-top:1px solid var(--rule);padding-top:16px;display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between;font-size:12px;color:var(--ink-3);}
   footer b{color:var(--ink-2);font-weight:600;}
 
   @media (max-width:520px){
@@ -188,29 +140,32 @@
 </style>
 </head>
 <body>
-<div class="wrap">  <header>
+<div class="wrap">
+
+  <header>
     <div>
-      <p class="eyebrow">LHA Florestal &amp; Biomassa · Manutenção de frota</p>
+      <p class="eyebrow">LHA Florestal &amp; Biomassa · Manutenção de frota · OS 0000003848</p>
       <h1>Trator Valmet 1280 <span class="maq">ISB09</span></h1>
     </div>
-    <p class="sub">Relatório de execução das pendências levantadas na inspeção da máquina. Dez serviços concluídos em oficina; três itens seguem para decisão da gerência.</p>
+    <p class="sub">Revisão geral com fechamento das pendências levantadas na inspeção da máquina. Doze serviços concluídos em oficina entre 07/08 e 19/08; três itens seguem para decisão da gerência.</p>
 
     <dl class="ficha">
       <div><dt>Máquina</dt><dd>ISB09</dd></div>
       <div><dt>Modelo</dt><dd>Valmet 1280</dd></div>
       <div><dt>Horímetro</dt><dd>1156</dd></div>
-      <div><dt>Data</dt><dd>29/08/2026</dd></div>
+      <div><dt>Entrada</dt><dd>07/08/2026</dd></div>
+      <div><dt>Entrega</dt><dd>19/08/2026</dd></div>
     </dl>
   </header>
 
   <section>
     <div class="placar">
-      <div class="kpi ok"><b>10</b><span>Concluídos</span><small>Executados em oficina</small></div>
+      <div class="kpi ok"><b>12</b><span>Concluídos</span><small>Executados em oficina</small></div>
       <div class="kpi wait"><b>3</b><span>Pendentes</span><small>Gerência resolve</small></div>
       <div class="kpi hold"><b>1</b><span>A confirmar</span><small>Status não informado</small></div>
     </div>
     <div>
-      <div class="barra" role="img" aria-label="10 serviços concluídos, 3 pendentes e 1 a confirmar">
+      <div class="barra" role="img" aria-label="12 serviços concluídos, 3 pendentes e 1 a confirmar">
         <i class="b-ok"></i><i class="b-wait"></i><i class="b-hold"></i>
       </div>
       <div class="legenda">
@@ -222,19 +177,21 @@
   </section>
 
   <section>
-    <h2>Serviços executados <span class="cont">10 itens</span></h2>
-    <p class="nota">Numeração conforme o relatório de oficina; entre parênteses, o relato original da planilha de inspeção.</p>
+    <h2>Serviços executados <span class="cont">12 itens</span></h2>
+    <p class="nota">Numeração conforme o relatório de oficina; entre parênteses, o relato original da planilha de inspeção. Itens sem relato correspondente foram identificados e resolvidos durante a revisão.</p>
     <ol class="servicos">
       <li><span class="num">01</span><span class="serv-txt"><strong>Vazamento do cubo direito corrigido</strong><em>Retentor trocado · relato: “Vazamento cubo direito”</em></span><span class="tag ok">Concluído</span></li>
       <li><span class="num">02</span><span class="serv-txt"><strong>Porta fabricada e instalada com Lexan</strong><em>Relato: “Sem porta”</em></span><span class="tag ok">Concluído</span></li>
-      <li><span class="num">03</span><span class="serv-txt"><strong>Lexan dianteiro, lateral e traseiro trocados</strong><em>Serviço adicional de vidraçaria da cabine</em></span><span class="tag ok">Concluído</span></li>
-      <li><span class="num">04</span><span class="serv-txt"><strong>Freio de mão arrumado</strong><em>Relato: “Sem freio de mão”</em></span><span class="tag ok">Concluído</span></li>
-      <li><span class="num">05</span><span class="serv-txt"><strong>Parafusos da tampa do guincho recolocados</strong><em>Relato: “Parafusos da tampa do guincho”</em></span><span class="tag ok">Concluído</span></li>
-      <li><span class="num">06</span><span class="serv-txt"><strong>Força do guincho corrigida</strong><em>Relato: “Guincho sem força”</em></span><span class="tag ok">Concluído</span></li>
-      <li><span class="num">07</span><span class="serv-txt"><strong>Banco recuperado</strong><em>Relato: “Banco quebrado”</em></span><span class="tag ok">Concluído</span></li>
-      <li><span class="num">08</span><span class="serv-txt"><strong>Cabine recuperada</strong><em>Relato: “Cabine quebrada”</em></span><span class="tag ok">Concluído</span></li>
-      <li><span class="num">09</span><span class="serv-txt"><strong>Iluminação arrumada</strong><em>Relato: “Sem iluminação”</em></span><span class="tag ok">Concluído</span></li>
-      <li><span class="num">10</span><span class="serv-txt"><strong>Proteção do guincho instalada</strong><em>Relato: “Sem proteção no guincho”</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">03</span><span class="serv-txt"><strong>Maçaneta e travamento da porta instalados</strong><em>Serviço adicional — porta entregue completa e operante</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">04</span><span class="serv-txt"><strong>Lexan dianteiro, lateral e traseiro trocados</strong><em>Serviço adicional de vidraçaria da cabine</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">05</span><span class="serv-txt"><strong>Freio de mão arrumado</strong><em>Relato: “Sem freio de mão”</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">06</span><span class="serv-txt"><strong>Parafusos da tampa do guincho recolocados</strong><em>Relato: “Parafusos da tampa do guincho”</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">07</span><span class="serv-txt"><strong>Força do guincho corrigida</strong><em>Relato: “Guincho sem força”</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">08</span><span class="serv-txt"><strong>Banco recuperado</strong><em>Relato: “Banco quebrado”</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">09</span><span class="serv-txt"><strong>Cabine recuperada</strong><em>Relato: “Cabine quebrada”</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">10</span><span class="serv-txt"><strong>Iluminação corrigida</strong><em>Faróis de trabalho dianteiros em operação · relato: “Sem iluminação”</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">11</span><span class="serv-txt"><strong>Proteção do guincho instalada</strong><em>Relato: “Sem proteção no guincho”</em></span><span class="tag ok">Concluído</span></li>
+      <li><span class="num">12</span><span class="serv-txt"><strong>Tampa do tanque de abastecimento colocada</strong><em>Serviço adicional — máquina estava sem tampa</em></span><span class="tag ok">Concluído</span></li>
     </ol>
   </section>
 
@@ -271,18 +228,83 @@
   </section>
 
   <section>
-    <h2>Registro fotográfico</h2>
-    <div class="anexo">
-      <b>Foto 01 — Porta nova instalada com Lexan</b>
-      <span>Registro enviado junto ao relatório (29/08/2026), mostrando a porta fabricada em oficina, com Lexan e fechadura montados no lado esquerdo da cabine.</span>
+    <h2>Horas trabalhadas <span class="cont">OS 0000003848</span></h2>
+    <p class="nota">Apontamentos do sistema para “TRATOR VALMET 1280 COM GUINCHO” — problema relatado: Revisão Geral (Kauan). Cliente 0000002 — ISBRA FLORESTAL LTDA, Guarapuava. Sem horas de deslocamento e sem km rodado no período.</p>
+
+    <div class="horas-topo">
+      <div class="kpi ok"><b>29:40</b><span>Horas de serviço</span><small>Total alocado em ago/2026</small></div>
+      <div class="kpi"><b>5</b><span>Apontamentos</span><small>Registros na OS</small></div>
+      <div class="kpi"><b>13</b><span>Dias em oficina</span><small>07/08 a 19/08/2026</small></div>
+    </div>
+
+    <div class="tabela-wrap">
+      <table class="horas">
+        <thead>
+          <tr><th>Apont.</th><th>Início</th><th>Final</th><th>Duração</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="mono">01</td><td class="mono">07:30</td><td class="mono">17:30</td><td><span class="dur"><span class="track"><i class="fill" style="width:89.5%"></i></span><b>08:30</b></span></td></tr>
+          <tr><td class="mono">02</td><td class="mono">—</td><td class="mono">10:00</td><td><span class="dur"><span class="track"><i class="fill" style="width:26.3%"></i></span><b>02:30</b></span></td></tr>
+          <tr><td class="mono">03</td><td class="mono">08:00</td><td class="mono">19:00</td><td><span class="dur"><span class="track"><i class="fill" style="width:100%"></i></span><b>09:30</b></span></td></tr>
+          <tr><td class="mono">04</td><td class="mono">11:30</td><td class="mono">17:30</td><td><span class="dur"><span class="track"><i class="fill" style="width:63.2%"></i></span><b>06:00</b></span></td></tr>
+          <tr><td class="mono">05</td><td class="mono">14:20</td><td class="mono">17:30</td><td><span class="dur"><span class="track"><i class="fill" style="width:33.3%"></i></span><b>03:10</b></span></td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td class="mono">—</td><td colspan="2">Total de horas de serviço</td><td class="mono"><b>29:40</b></td></tr>
+        </tfoot>
+      </table>
+    </div>
+    <p class="nota">O apontamento 02 aparece no sistema sem hora de início registrada.</p>
+  </section>
+
+  <section>
+    <h2>Registro fotográfico <span class="cont">5 fotos</span></h2>
+    <div class="galeria">
+      <figure>
+        <img src="fotos/isb09/01-porta-lexan.jpeg" alt="Porta nova da cabine com Lexan instalada">
+        <div class="ph" hidden><span class="cam">📷</span><span>Foto a anexar</span><code>fotos/isb09/01-porta-lexan.jpeg</code></div>
+        <figcaption><b>Foto 01</b><span>Porta fabricada em oficina, com Lexan montado no lado esquerdo da cabine.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="fotos/isb09/02-macaneta.jpeg" alt="Maçaneta e haste de travamento da porta instaladas">
+        <div class="ph" hidden><span class="cam">📷</span><span>Foto a anexar</span><code>fotos/isb09/02-macaneta.jpeg</code></div>
+        <figcaption><b>Foto 02</b><span>Maçaneta e haste de travamento da porta instaladas e funcionando.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="fotos/isb09/03-lexan-dianteiro-iluminacao.jpeg" alt="Lexan dianteiro trocado e faróis de trabalho instalados">
+        <div class="ph" hidden><span class="cam">📷</span><span>Foto a anexar</span><code>fotos/isb09/03-lexan-dianteiro-iluminacao.jpeg</code></div>
+        <figcaption><b>Foto 03</b><span>Lexan dianteiro trocado e faróis de trabalho da frente — iluminação corrigida.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="fotos/isb09/04-lexan-traseiro.jpeg" alt="Lexan traseiro e lateral trocados">
+        <div class="ph" hidden><span class="cam">📷</span><span>Foto a anexar</span><code>fotos/isb09/04-lexan-traseiro.jpeg</code></div>
+        <figcaption><b>Foto 04</b><span>Lexan traseiro e lateral trocados, com a cabine fechada e sinalização no lugar.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="fotos/isb09/05-tampa-tanque.jpeg" alt="Tampa do tanque de abastecimento instalada">
+        <div class="ph" hidden><span class="cam">📷</span><span>Foto a anexar</span><code>fotos/isb09/05-tampa-tanque.jpeg</code></div>
+        <figcaption><b>Foto 05</b><span>Tampa do tanque de abastecimento colocada — a máquina estava sem.</span></figcaption>
+      </figure>
     </div>
   </section>
 
   <footer>
-    <span>Máquina <b>ISB09</b> · Valmet 1280 · Horímetro <b>1156</b></span>
-    <span>Relatório de oficina — <b>29/08/2026</b></span>
+    <span>Máquina <b>ISB09</b> · Valmet 1280 com guincho · Horímetro <b>1156</b></span>
+    <span>OS <b>0000003848</b> · 07/08 a 19/08/2026 · <b>29:40 h</b> de serviço</span>
   </footer>
 
 </div>
+
+<script>
+  document.querySelectorAll("figure img").forEach(function (img) {
+    function semFoto() {
+      img.hidden = true;
+      var ph = img.parentElement.querySelector(".ph");
+      if (ph) ph.hidden = false;
+    }
+    img.addEventListener("error", semFoto);
+    if (img.complete && img.naturalWidth === 0) semFoto();
+  });
+</script>
 </body>
 </html>
