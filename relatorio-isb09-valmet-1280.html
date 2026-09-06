@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Manutenção ISB 09</title>
+<style>
+  :root {
+    --bg:        #0a0e17;
+    --surface:   #121a28;
+    --surface-2: #1a2436;
+    --border:    #263048;
+    --accent:    #f5a623;
+    --accent-2:  #ffc266;
+    --accent-deep:#c9790a;
+    --accent-dim:rgba(245,166,35,.14);
+    --blue:      #5b9bf5;
+    --green:     #34d178;
+    --green-dim: rgba(52,209,120,.14);
+    --text:      #f2f5fa;
+    --text-2:    #a4afc4;
+    --text-3:    #6b7690;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  [hidden] { display: none !important; }
+  body {
+    font-family: -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    padding: 40px 16px 80px;
+    font-variant-numeric: tabular-nums;
+  }
+  .sheet {
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--surface);
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .head {
+    background: linear-gradient(160deg, #0d1420, #161f30);
+    border-bottom: 3px solid var(--accent);
+    padding: 32px 40px 30px;
+  }
+  .head .brand { display:flex; align-items:center; gap:12px; margin-bottom:22px; }
+  .brand-badge {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent-2), var(--accent-deep));
+    display:flex; align-items:center; justify-content:center;
+    font-weight:900; font-size:13px; letter-spacing:-.5px; color:#1a1000;
+    border:2px solid rgba(255,255,255,.15);
+  }
+  .brand-name { font-size:13px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color: var(--accent); }
+  .head h1 { font-size: 22px; font-weight: 900; letter-spacing: .3px; text-transform: uppercase; margin-bottom: 8px; text-wrap: balance; }
+  .head .sub { font-size: 14px; color: var(--text-2); margin-bottom: 22px; }
+
+  .pill-row { display:flex; gap:10px; flex-wrap:wrap; }
+  .pill {
+    display:inline-flex; align-items:center; gap:6px;
+    background: var(--surface-2); border:1px solid var(--border);
+    border-radius: 50px; padding: 7px 16px;
+    font-size: 11.5px; font-weight:700; letter-spacing:.3px; text-transform:uppercase; color: var(--text-2);
+  }
+  .pill.on { border-color: var(--accent); color: var(--accent); }
+  .pill.ok { border-color: var(--green); color: var(--green); }
+
+  .body-content { padding: 36px 40px 12px; }
+  section.block { margin-bottom: 34px; }
+  .block h2 {
+    display:flex; align-items:center; gap:12px;
+    font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px;
+    color: var(--text); padding-bottom: 12px; margin-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .h-badge {
+    flex-shrink:0; width:24px; height:24px; border-radius:7px;
+    background: var(--accent); color:#1a1000;
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:900;
+  }
+
+  ul.check-list { list-style: none; }
+  ul.check-list li {
+    display:flex; align-items:flex-start; gap:12px;
+    padding: 13px 0; border-bottom: 1px solid var(--border);
+    font-size: 16.5px; line-height:1.55; font-weight: 700; color: var(--text);
+  }
+  ul.check-list li:last-child { border-bottom:none; }
+  ul.check-list li > div { flex:1; min-width:0; }
+  ul.check-list .mark { flex-shrink:0; font-size:19px; line-height:1.4; }
+  ul.check-list .num { font-weight:800; color: var(--accent); margin-right:2px; }
+  ul.check-list .foto-ref { font-weight:600; font-size:13px; color: var(--text-3); }
+  ul.check-list .relato { display:block; font-weight:600; font-size:13px; color: var(--text-3); margin-top:2px; }
+
+  .foto-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:16px; }
+  .foto-card {
+    background: var(--surface-2); border:1px solid var(--border); border-radius:14px;
+    overflow:hidden; display:flex; flex-direction:column;
+  }
+  .foto-card.tall { grid-row: span 2; }
+  .foto-card.wide { grid-column: span 2; }
+  .foto-card img { width:100%; display:block; flex:1; object-fit:cover; min-height:0; }
+  .foto-ph {
+    flex:1; min-height:190px; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:8px; text-align:center; padding:20px;
+    background: repeating-linear-gradient(135deg, #182234 0 10px, #1a2436 10px 20px);
+    color: var(--text-3); font-size:12px; line-height:1.5;
+  }
+  .foto-ph .ic { font-size:22px; }
+  .foto-ph code { font-size:10.5px; color: var(--text-2); word-break:break-all; }
+  .foto-card figcaption {
+    padding: 12px 16px; font-size:13px; line-height:1.55; color: var(--text-2);
+    border-top: 1px solid var(--border);
+  }
+  .foto-card figcaption .fnum {
+    display:block; font-size:10.5px; font-weight:800; letter-spacing:.8px;
+    text-transform:uppercase; color: var(--accent); margin-bottom:3px;
+  }
+
+  .data-table { width:100%; border-collapse: collapse; font-size: 13.5px; }
+  .data-table th {
+    text-align:left; background: var(--surface-2); color: var(--accent);
+    font-size:11px; text-transform:uppercase; letter-spacing:.6px; font-weight:800;
+    padding: 11px 12px; border-bottom: 2px solid var(--accent);
+  }
+  .data-table td { padding: 11px 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+  .data-table td.num, .data-table th.num { text-align:right; }
+  .data-table tr.total-row td {
+    font-weight: 800; background: var(--surface-2); color: var(--accent-2); border-bottom:none;
+  }
+  .table-scroll { overflow-x: auto; }
+  .tag {
+    display:inline-block; font-size:11px; font-weight:700; padding:3px 10px; border-radius:50px;
+    border:1px solid transparent; white-space:nowrap;
+  }
+  .tag.pend { background: var(--accent-dim); color: var(--accent-2); border-color: rgba(245,166,35,.35); }
+  .tag.ved { background: var(--accent-dim); color: var(--accent-2); border-color: rgba(245,166,35,.35); }
+  .tag.pec { background: rgba(91,155,245,.14); color: var(--blue); border-color: rgba(91,155,245,.35); }
+  .nota-head {
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    font-size:12px; font-weight:800; letter-spacing:.4px; text-transform:uppercase;
+    color: var(--text-2); margin: 22px 0 10px;
+  }
+  .nota-head:first-child { margin-top:0; }
+  .nota-head .nid { color: var(--accent); }
+  .nota-head .ndate { color: var(--text-3); font-weight:700; }
+
+  .bars-wrap { display:flex; flex-direction:column; gap:10px; margin-top:20px; }
+  .bar-row { display:grid; grid-template-columns: 150px 1fr 62px; align-items:center; gap:10px; }
+  .bar-lbl { font-size:12px; color: var(--text-2); }
+  .bar-track { background: var(--surface-2); border-radius:6px; height:14px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:6px; background: linear-gradient(90deg, #5d4fc4, #9b8bf4); }
+  .bar-val { font-size:12px; font-weight:700; color: var(--text); text-align:right; }
+  .os-info {
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap:14px;
+    background: var(--surface-2); border:1px solid var(--border); border-radius:14px;
+    padding:18px 22px; margin-bottom:18px;
+  }
+  .os-info div span {
+    display:block; font-size:10.5px; font-weight:800; letter-spacing:.7px;
+    text-transform:uppercase; color: var(--text-3); margin-bottom:3px;
+  }
+  .os-info div strong { font-size:14px; font-weight:700; color: var(--text); }
+
+  .callout {
+    display:flex; gap:12px; align-items:flex-start;
+    background: var(--accent-dim); border:1px solid rgba(245,166,35,.35); border-radius: 12px;
+    padding: 14px 18px; font-size:13.5px; line-height:1.65; color: var(--text-2); margin-top:16px;
+  }
+  .callout strong { color: var(--text); }
+  .callout .ic { flex-shrink:0; font-size:16px; }
+  .callout.info { background: rgba(91,155,245,.12); border-color: rgba(91,155,245,.35); }
+
+  .resumo-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:16px; }
+  .resumo-card {
+    background: var(--surface-2); border:1px solid var(--border); border-radius:14px;
+    padding: 18px; text-align:center;
+  }
+  .resumo-card .n { font-size:28px; font-weight:900; }
+  .resumo-card.c-violet .n { font-size:22px; color: #9b8bf4; }
+  .resumo-card.c-money .n { font-size:19px; color: var(--accent-2); }
+  .resumo-card.c-green .n { color: var(--green); }
+  .resumo-card.c-blue .n { color: var(--blue); }
+  .resumo-card.c-accent .n { color: var(--accent); }
+  .resumo-card .l { font-size:11.5px; color: var(--text-2); margin-top:4px; }
+
+  .conclusao {
+    background: var(--green-dim);
+    border: 1px solid rgba(52,209,120,.35); border-radius: 14px;
+    padding: 20px 24px; font-size: 14.5px; line-height:1.7; color: var(--text);
+    display:flex; gap:12px; align-items:flex-start;
+  }
+
+  .foot {
+    padding: 24px 40px 32px; display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:12px; border-top: 1px solid var(--border);
+  }
+  .foot p { font-size:11.5px; color: var(--text-3); }
+  .btn-print {
+    background: var(--accent); color:#1a1000; border:none; padding:10px 20px;
+    border-radius:50px; font-size:13px; font-weight:800; cursor:pointer;
+  }
+  .btn-print:hover, .btn-print:focus-visible { background: var(--accent-2); outline:2px solid var(--accent-2); outline-offset:2px; }
+
+  @media (max-width: 640px) {
+    .body-content, .head, .foot { padding-left:22px; padding-right:22px; }
+    .resumo-grid { grid-template-columns: repeat(2,1fr); }
+    .foto-grid { grid-template-columns: 1fr; }
+    .foto-card.tall { grid-row: auto; }
+    .foto-card.wide { grid-column: auto; }
+    .bar-row { grid-template-columns: 110px 1fr 52px; }
+  }
+  @media print {
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { padding:0; }
+    .sheet { box-shadow:none; border:none; border-radius:0; max-width:100%; }
+    .btn-print { display:none; }
+    .sheet { overflow: visible; }
+    section.block { break-inside: auto; }
+    ul.check-list li, .resumo-card, .conclusao, .callout, .foto-card, .bar-row, .os-info,
+    .nota-head, .data-table tr { break-inside: avoid; }
+    .head { break-inside: avoid; break-after: avoid; }
+    .block h2, .nota-head { break-after: avoid; }
+    table.data-table thead { display: table-header-group; }
+    .foto-grid { break-inside: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="head">
+    <div class="brand">
+      <div class="brand-badge">FM</div>
+      <div class="brand-name">FM Manutenções</div>
+    </div>
+    <h1>Relatório de Manutenção — ISB 09</h1>
+    <div class="sub">Revisão geral do trator Valmet 1280 com guincho — cabine, guincho, transmissão, freio e vedações</div>
+    <div class="pill-row">
+      <span class="pill on">🚜 Máquina ISB 09</span>
+      <span class="pill">📅 07/08 – 19/08/2026</span>
+      <span class="pill">🔧 FM Manutenções</span>
+      <span class="pill">🕐 Horímetro 1156</span>
+      <span class="pill ok">🟢✔️ 13 serviços concluídos</span>
+      <span class="pill">⏱ 29h40 de serviço</span>
+      <span class="pill on">🟠⏳ 3 pendências</span>
+      <span class="pill">🧾 R$ 158,40 em peças</span>
+      <span class="pill on">🧾 Ferros e Lexans a lançar</span>
+    </div>
+  </div>
+
+  <div class="body-content">
+
+    <section class="block">
+      <h2><span class="h-badge">1</span>Serviços Executados</h2>
+      <ul class="check-list">
+        <li><span class="mark">🟢✔️</span><div><span class="num">1.</span> Corrigido o vazamento do cubo direito, com troca do retentor. <span class="relato">Relato da inspeção: “Vazamento cubo direito”.</span></div></li>
+        <li><span class="mark">🟢✔️</span><div><span class="num">2.</span> Fabricada e instalada a porta da cabine, com Lexan. <span class="foto-ref">(foto 1)</span> <span class="relato">Relato da inspeção: “Sem porta”.</span></div></li>
+        <li><span class="mark">🟢✔️</span><div><span class="num">3.</span> Instalada a maçaneta e o travamento da porta. <span class="foto-ref">(foto 2)</span> <span class="relato">Serviço adicional — porta entregue completa e operante.</span></div></li>
+        <li><span class="mark">🟢✔️</span><div><span class="num">4.</span> Trocado o Lexan dianteiro, lateral e traseiro. <span class="foto-ref">(fotos 3 e 4)</span> <span class="relato">Serviço adicional de vidraçaria da cabine.</span></div></li>
+        <li><span class="mark">🟢✔️</span><div><span class="num">5.</span> Arrumado o freio de mão. <span class="relato">Relato da inspeção: “Sem freio de mão”.</span></div></li>
+        <li><span class="mark">🟢✔️</span><div><span class="num">6.</span> Recolocados os parafusos da tampa do guincho. <span class="relato">Relato da inspeção: “Parafusos da tampa do guincho”.</span></div></li>
+        <li><span class="mark">🟢✔️</span><div><span class="num">7.</span> Corrigida a força do guincho. <span class="relato">Relato da inspeção: “Guincho sem força”.</span></div></li>
+        <li><span class="mark">🟢✔️</span><div><span class="num">8.</span> Banco recuperado. <span class="relato">Relato da inspeção: “Banco quebrado”.</span></div></li>
+        <li><span class="mark">🟢✔️</span><div><span class="num">9.</span> Cabine recuperada. <span class="relato">Relato da inspeção: “Cabine quebrada”.</span></div></li>
+        <li><span class="mark">🟢✔️</span><div><span class="num">10.</span> Iluminação corrigida, com os faróis de trabalho em operação. <span class="foto-ref">(fotos 3 e 6)</span> <span class="relato">Relato da inspeção: “Sem iluminação”.</span></div></li>
+        <li><span class="mark">🟢✔️</span><div><span class="num">11.</span> Instalada a proteção do guincho. <span class="relato">Relato da inspeção: “Sem proteção no guincho”.</span></div></li>
+        <li><span class="mark">🟢✔️</span><div><span class="num">12.</span> Colocada a tampa do tanque de abastecimento. <span class="foto-ref">(foto 5)</span> <span class="relato">Serviço adicional — a máquina estava sem tampa.</span></div></li>
+        <li><span class="mark">🟢✔️</span><div><span class="num">13.</span> Arrumada a alavanca de marcha. <span class="relato">Relato da inspeção: “Alavanca de marcha”.</span></div></li>
+      </ul>
+    </section>
+
+    <section class="block">
+      <h2><span class="h-badge">2</span>Pendências — Gerência Resolve</h2>
+      <ul class="check-list">
+        <li><span class="mark">🟠⏳</span><div><span class="num">1.</span> Extintor sem carga — recarga ou substituição. <span class="relato">Item de segurança: enquanto não for resolvido, a máquina não fica plenamente liberada.</span></div></li>
+        <li><span class="mark">🟠⏳</span><div><span class="num">2.</span> Recapagem dos pneus. <span class="relato">Depende de contratação de serviço externo.</span></div></li>
+        <li><span class="mark">🟠⏳</span><div><span class="num">3.</span> Cabo do guincho continua no mesmo comprimento. <span class="relato">Substituição por cabo maior depende de aquisição.</span></div></li>
+      </ul>
+      <div class="callout">
+        <span class="ic">🟠</span>
+        <div><strong>Decisão da gerência:</strong> os três itens dependem de compra ou contratação e não puderam ser resolvidos na oficina. Aprovados, entram na próxima intervenção do ISB 09.</div>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2><span class="h-badge">3</span>Peças e Materiais Aplicados</h2>
+
+      <div class="nota-head"><span class="nid">Venda 881324</span> <span class="ndate">10/08/2026</span> · Parafusos Guarapuava · Requisição 0004412</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Item</th><th>Aplicação</th><th class="num">Qtd.</th><th class="num">Unit. R$</th><th class="num">Total R$</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>37461 — Anel elástico interno I-38</td><td data-label="Aplicação"><span class="tag ved">Vedação</span> Cubo de roda</td><td class="num" data-label="Qtd.">1</td><td class="num" data-label="Unit. R$">5,40</td><td class="num" data-label="Total R$">5,40</td></tr>
+            <tr class="total-row"><td>Subtotal da nota</td><td></td><td class="num" data-label="Qtd.">1</td><td></td><td class="num" data-label="Total R$">5,40</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="nota-head"><span class="nid">Condicional 87.362</span> <span class="ndate">13/08/2026</span> · Valforte Peças · OC 4433</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Item</th><th>Aplicação</th><th class="num">Qtd.</th><th class="num">Unit. R$</th><th class="num">Total R$</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>81644000 — Retentor do cubo Valmet (verde)</td><td data-label="Aplicação"><span class="tag ved">Vedação</span> Cubo de roda direito</td><td class="num" data-label="Qtd.">1</td><td class="num" data-label="Unit. R$">115,00</td><td class="num" data-label="Total R$">115,00</td></tr>
+            <tr class="total-row"><td>Subtotal da nota</td><td></td><td class="num" data-label="Qtd.">1</td><td></td><td class="num" data-label="Total R$">115,00</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="nota-head"><span class="nid">Condicional 87.516</span> <span class="ndate">24/08/2026</span> · Valforte Peças · Ordem de compra 004364</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Item</th><th>Aplicação</th><th class="num">Qtd.</th><th class="num">Unit. R$</th><th class="num">Total R$</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>KH4933 — Anel retentor do tanque</td><td data-label="Aplicação"><span class="tag ved">Vedação</span> Tanque de abastecimento</td><td class="num" data-label="Qtd.">1</td><td class="num" data-label="Unit. R$">1,00</td><td class="num" data-label="Total R$">1,00</td></tr>
+            <tr><td>584150 — Tampa do tanque</td><td data-label="Aplicação"><span class="tag pec">Peça</span> Tanque de abastecimento</td><td class="num" data-label="Qtd.">1</td><td class="num" data-label="Unit. R$">37,00</td><td class="num" data-label="Total R$">37,00</td></tr>
+            <tr class="total-row"><td>Subtotal da nota</td><td></td><td class="num" data-label="Qtd.">2</td><td></td><td class="num" data-label="Total R$">38,00</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="nota-head" style="margin-top:26px;">Total geral de peças</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <tbody>
+            <tr class="total-row"><td>3 notas · 4 peças aplicadas</td><td class="num">R$ 158,40</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="nota-head" style="margin-top:26px;">Materiais com custo a lançar</div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Material</th><th>Aplicação</th><th class="num">Qtd.</th><th class="num">Valor R$</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ferros / perfis metálicos</td><td data-label="Aplicação">Confecção da porta da cabine</td><td class="num" data-label="Qtd.">—</td><td class="num" data-label="Valor R$"><span class="tag pend">A lançar</span></td></tr>
+            <tr><td>Lexan</td><td data-label="Aplicação">Porta, dianteiro, lateral e traseiro</td><td class="num" data-label="Qtd.">—</td><td class="num" data-label="Valor R$"><span class="tag pend">A lançar</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <span class="ic">🧾</span>
+        <div><strong>Pendência de lançamento:</strong> o custo dos ferros usados na confecção da porta e o dos Lexans ainda não foi lançado na OS 0000003848. Com as notas já lançadas, as peças somam <strong>R$ 158,40</strong> — o custo total da revisão só fecha depois desses dois lançamentos.</div>
+      </div>
+      <div class="callout info">
+        <span class="ic">📌</span>
+        <div>Cliente das notas: <strong>Isbra Florestal</strong>. As duas condicionais da Valforte trazem a identificação <strong>ISB 09</strong>; a venda 881324 (anel elástico I-38) veio sem a identificação da máquina na nota — conferir no lançamento.</div>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2><span class="h-badge">4</span>Horas Trabalhadas — Mão de Obra</h2>
+      <div class="os-info">
+        <div><span>Ordem de serviço</span><strong>0000003848</strong></div>
+        <div><span>ID do objeto</span><strong>ISB09</strong></div>
+        <div><span>Equipamento</span><strong>Trator Valmet 1280 com guincho</strong></div>
+        <div><span>Cliente</span><strong>Isbra Florestal · Guarapuava</strong></div>
+        <div><span>Problema relatado</span><strong>Revisão geral (Kauan)</strong></div>
+        <div><span>Competência</span><strong>Agosto/2026</strong></div>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Apontamento</th><th>Hora início</th><th>Hora final</th><th class="num">Duração</th><th class="num">Hrs de serviço</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1º apontamento</td><td data-label="Hora início">07:30</td><td data-label="Hora final">17:30</td><td class="num" data-label="Duração">08:30</td><td class="num" data-label="Hrs de serviço">08:30</td></tr>
+            <tr><td>2º apontamento</td><td data-label="Hora início">—</td><td data-label="Hora final">10:00</td><td class="num" data-label="Duração">02:30</td><td class="num" data-label="Hrs de serviço">02:30</td></tr>
+            <tr><td>3º apontamento</td><td data-label="Hora início">08:00</td><td data-label="Hora final">19:00</td><td class="num" data-label="Duração">09:30</td><td class="num" data-label="Hrs de serviço">09:30</td></tr>
+            <tr><td>4º apontamento</td><td data-label="Hora início">11:30</td><td data-label="Hora final">17:30</td><td class="num" data-label="Duração">06:00</td><td class="num" data-label="Hrs de serviço">06:00</td></tr>
+            <tr><td>5º apontamento</td><td data-label="Hora início">14:20</td><td data-label="Hora final">17:30</td><td class="num" data-label="Duração">03:10</td><td class="num" data-label="Hrs de serviço">03:10</td></tr>
+            <tr class="total-row"><td>Total alocado</td><td></td><td></td><td class="num" data-label="Duração">29:40</td><td class="num" data-label="Hrs de serviço">29:40</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bars-wrap">
+        <div class="bar-row"><div class="bar-lbl">1º · 07:30–17:30</div><div class="bar-track"><div class="bar-fill" style="width:89.5%;"></div></div><div class="bar-val">08:30</div></div>
+        <div class="bar-row"><div class="bar-lbl">2º · até 10:00</div><div class="bar-track"><div class="bar-fill" style="width:26.3%;"></div></div><div class="bar-val">02:30</div></div>
+        <div class="bar-row"><div class="bar-lbl">3º · 08:00–19:00</div><div class="bar-track"><div class="bar-fill" style="width:100%;"></div></div><div class="bar-val">09:30</div></div>
+        <div class="bar-row"><div class="bar-lbl">4º · 11:30–17:30</div><div class="bar-track"><div class="bar-fill" style="width:63.2%;"></div></div><div class="bar-val">06:00</div></div>
+        <div class="bar-row"><div class="bar-lbl">5º · 14:20–17:30</div><div class="bar-track"><div class="bar-fill" style="width:33.3%;"></div></div><div class="bar-val">03:10</div></div>
+      </div>
+      <div class="callout">
+        <span class="ic">⏱</span>
+        <div><strong>29h40min</strong> de horas alocadas, integralmente como horas de serviço — <strong>sem horas de deslocamento</strong> e <strong>0 km rodado</strong> no período. A máquina entrou em <strong>07/08</strong> e foi entregue em <strong>19/08/2026</strong>. O 2º apontamento aparece no sistema sem hora de início registrada.</div>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2><span class="h-badge">5</span>Registro Fotográfico</h2>
+      <div class="foto-grid">
+        <figure class="foto-card">
+          <img src="fotos/isb09/01-porta-lexan.jpg" alt="Porta nova da cabine com Lexan instalada">
+          <div class="foto-ph" hidden><span class="ic">📷</span><span>Foto a anexar</span><code>fotos/isb09/01-porta-lexan.jpg</code></div>
+          <figcaption><span class="fnum">Foto 1</span>Porta fabricada em oficina, com Lexan, montada no lado esquerdo da cabine.</figcaption>
+        </figure>
+        <figure class="foto-card">
+          <img src="fotos/isb09/02-macaneta.jpg" alt="Maçaneta e haste de travamento da porta instaladas">
+          <div class="foto-ph" hidden><span class="ic">📷</span><span>Foto a anexar</span><code>fotos/isb09/02-macaneta.jpg</code></div>
+          <figcaption><span class="fnum">Foto 2</span>Maçaneta e haste de travamento da porta instaladas e funcionando.</figcaption>
+        </figure>
+        <figure class="foto-card">
+          <img src="fotos/isb09/03-lexan-dianteiro-iluminacao.jpg" alt="Lexan dianteiro trocado e farol de trabalho instalado">
+          <div class="foto-ph" hidden><span class="ic">📷</span><span>Foto a anexar</span><code>fotos/isb09/03-lexan-dianteiro-iluminacao.jpg</code></div>
+          <figcaption><span class="fnum">Foto 3</span>Lexan dianteiro trocado e farol de trabalho da frente — iluminação corrigida.</figcaption>
+        </figure>
+        <figure class="foto-card">
+          <img src="fotos/isb09/04-lexan-traseiro.jpg" alt="Lexan traseiro e lateral trocados">
+          <div class="foto-ph" hidden><span class="ic">📷</span><span>Foto a anexar</span><code>fotos/isb09/04-lexan-traseiro.jpg</code></div>
+          <figcaption><span class="fnum">Foto 4</span>Lexan traseiro e lateral trocados, com a cabine fechada e a sinalização no lugar.</figcaption>
+        </figure>
+        <figure class="foto-card">
+          <img src="fotos/isb09/05-tampa-tanque.webp" alt="Tampa do tanque de abastecimento instalada">
+          <div class="foto-ph" hidden><span class="ic">📷</span><span>Foto a anexar</span><code>fotos/isb09/05-tampa-tanque.webp</code></div>
+          <figcaption><span class="fnum">Foto 5</span>Tampa do tanque de abastecimento colocada — a máquina estava sem.</figcaption>
+        </figure>
+        <figure class="foto-card">
+          <img src="fotos/isb09/06-farois-teto.jpg" alt="Faróis de trabalho e lanternas no teto da cabine">
+          <div class="foto-ph" hidden><span class="ic">📷</span><span>Foto a anexar</span><code>fotos/isb09/06-farois-teto.jpg</code></div>
+          <figcaption><span class="fnum">Foto 6</span>Faróis de trabalho e lanternas no teto da cabine, ligados — iluminação corrigida.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2><span class="h-badge">6</span>Resumo da Manutenção</h2>
+      <div class="resumo-grid">
+        <div class="resumo-card c-green">
+          <div class="n">13</div>
+          <div class="l">🟢✔️ Serviços executados</div>
+        </div>
+        <div class="resumo-card c-accent">
+          <div class="n">3</div>
+          <div class="l">🟠⏳ Pendências da gerência</div>
+        </div>
+        <div class="resumo-card c-money">
+          <div class="n">R$ 158,40</div>
+          <div class="l">🧾 Peças aplicadas (3 notas)</div>
+        </div>
+        <div class="resumo-card c-accent">
+          <div class="n">2</div>
+          <div class="l">🧾 Materiais a lançar</div>
+        </div>
+        <div class="resumo-card c-violet">
+          <div class="n">29:40</div>
+          <div class="l">⏱ Horas de serviço (OS 3848)</div>
+        </div>
+        <div class="resumo-card c-blue">
+          <div class="n">6</div>
+          <div class="l">📷 Registros fotográficos</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2><span class="h-badge">7</span>Conclusão</h2>
+      <div class="conclusao">
+        <span>🟢✔️</span>
+        <div>O ISB 09 entrou na oficina em <strong>07/08</strong> e foi entregue em <strong>19/08/2026</strong>, com <strong>13 serviços concluídos</strong> em 29h40 de mão de obra: cabine fechada e envidraçada, porta nova com maçaneta, iluminação, freio de mão, alavanca de marcha, guincho e vazamento do cubo resolvidos, além da tampa do tanque que a máquina não tinha. Restam apenas <strong>3 itens para a gerência</strong> — extintor, recapagem dos pneus e cabo do guincho — todos dependentes de compra ou contratação. Em peças, as notas lançadas somam <strong>R$ 158,40</strong>; falta ainda <strong>lançar o custo dos ferros da porta e dos Lexans</strong> para fechar o custo total da revisão.</div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="foot">
+    <p>FM Manutenções — Relatório do ISB 09 gerado em 29/08/2026.</p>
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
+  </div>
+
+</div>
+
+<script>
+  document.querySelectorAll(".foto-card img").forEach(function (img) {
+    function semFoto() {
+      img.hidden = true;
+      var ph = img.parentElement.querySelector(".foto-ph");
+      if (ph) ph.hidden = false;
+    }
+    img.addEventListener("error", semFoto);
+    if (img.complete && img.naturalWidth === 0) semFoto();
+  });
+</script>
+</body>
+</html>
