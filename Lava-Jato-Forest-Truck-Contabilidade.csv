@@ -1,0 +1,32 @@
+LAVA JATO FOREST TRUCK - CONTABILIDADE
+
+=== RECEITAS ===
+Data,Tipo de Serviço,Cliente,Valor,Observações
+
+=== DESPESAS ===
+Data,Categoria,Fornecedor,Valor,Descrição
+
+=== SERVIÇOS CADASTRADOS ===
+Serviço,Preço (R$),Descrição
+Limpeza Leve,50.00,Limpeza básica com água
+Limpeza Completa,100.00,Limpeza completa com desengraxante
+Desengordurante,75.00,Aplicação de desengordurante profissional
+Hidrojato,150.00,Limpeza com hidrojato de alta pressão
+Polimento,120.00,Polimento e proteção da superfície
+Serviço Premium,200.00,Pacote completo com todos os serviços
+
+=== CATEGORIAS DE DESPESA ===
+Categoria,Descrição
+Água/Energia,Consumo de água e energia elétrica
+Química/Produtos,Produtos de limpeza e desengraxantes
+Aluguel,Aluguel do local/equipamentos
+Funcionário,Salários e encargos
+Manutenção Equipamento,Manutenção de máquinas e equipamentos
+Combustível,Combustível para veículos
+Limpeza/Suprimentos,Materiais de limpeza e suprimentos gerais
+Transporte,Custos de transporte
+Imposto/Taxa,Impostos e taxas governamentais
+Outro,Outras despesas não categorizadas
+
+=== RESUMO MENSAL ===
+Mês,Total Receitas,Total Despesas,Lucro/Prejuízo,Margem %
